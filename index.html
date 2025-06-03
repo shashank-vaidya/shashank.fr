@@ -70,21 +70,22 @@
     }
 
     /* ============================
-       HEADER (FLEX LAYOUT)
+       HEADER (FLEX LAYOUT, CENTERED)
        ============================ */
     header.profile-header {
       background-color: var(--color-light);
       display: flex;
       align-items: center;
-      justify-content: center; /* Center on all screen sizes */
+      justify-content: center; /* Center both image + text */
+      gap: 2rem;               /* Space between image & info */
       padding: 1rem 2rem;
       box-shadow: var(--shadow-sm);
       margin-bottom: 2rem;
       flex-wrap: wrap;
-      text-align: center; /* Ensure text is centered */
+      text-align: center;      /* Center text under each other, if wrapped */
     }
 
-    /* LEFT SIDE: PROFILE IMAGE */
+    /* PROFILE PHOTO */
     .profile-header .profile-photo {
       flex: 0 0 auto;
       width: 140px;
@@ -93,10 +94,10 @@
       object-fit: cover;
       border: 4px solid var(--color-accent);
       box-shadow: var(--shadow-sm);
-      margin-right: 2rem;
+      /* Removed margin-right altogether so it won't push the group off-center */
     }
 
-    /* RIGHT SIDE: NAME / TAGLINE / ICONS */
+    /* PROFILE INFO: name, tagline, social icons */
     .profile-header .profile-info {
       flex: 1 1 auto;
       min-width: 200px;
@@ -170,7 +171,7 @@
       border-radius: 2px;
     }
 
-    /* Experience Cards */
+    /* EXPERIENCE TIMELINE */
     .timeline {
       display: flex;
       flex-direction: column;
@@ -212,12 +213,6 @@
       border-radius: 50%;
       box-shadow: var(--shadow-sm);
     }
-    .timeline .job-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--color-dark);
-      margin-bottom: 0.3rem;
-    }
     .timeline .company-time {
       display: flex;
       justify-content: space-between;
@@ -233,13 +228,19 @@
       font-size: 0.85rem;
       color: var(--color-muted);
     }
+    .timeline .job-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--color-dark);
+      margin-bottom: 0.3rem;
+    }
     .timeline p {
       font-size: 0.95rem;
       color: var(--color-muted);
       line-height: 1.5;
     }
 
-    /* Projects Grid */
+    /* PROJECTS GRID */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -282,15 +283,11 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
+        gap: 1rem; /* slightly less gap on narrow screens */
       }
       .profile-header .profile-photo {
-        margin-right: 0;
-        margin-bottom: 1rem;
         width: 120px;
         height: 120px;
-      }
-      .profile-header .profile-info {
-        width: 100%;
       }
       .profile-header h1 {
         font-size: 1.7rem;
@@ -307,14 +304,14 @@
        HORIZONTAL HEADER BLOCK
        =========================== -->
   <header class="profile-header">
-    <!-- Left: Circular Photo -->
+    <!-- Profile Photo -->
     <img
       class="profile-photo"
       src="profile.jpg"
       alt="Shashank Vaidya"
     />
 
-    <!-- Right: Name / Tagline / Icons -->
+    <!-- Name / Tagline / Social Icons -->
     <div class="profile-info">
       <h1>Shashank Vaidya</h1>
       <p class="tagline">AI Engineer · Deep Learning · LLMs</p>
@@ -349,7 +346,7 @@
           </svg>
         </a>
 
-        <!-- X (formerly Twitter) Icon pointing to @shashank_bot -->
+        <!-- X (Twitter) Icon -->
         <a href="https://twitter.com/shashank_bot" target="_blank" aria-label="X (@shashank_bot)">
           <svg viewBox="0 0 24 24">
             <path
@@ -447,7 +444,7 @@
   </section>
 
   <!-- ============================
-       FOOTER / CONTACT REMOVED
+       FOOTER REMOVED
        ============================ -->
 </body>
 </html>
