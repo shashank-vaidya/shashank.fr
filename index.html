@@ -12,9 +12,9 @@
   />
 
   <style>
-    /* =============
+    /* ============================
        VARIABLES & RESETS
-       ============= */
+       ============================ */
     :root {
       --color-bg:     #f5f7fa;
       --color-light:  #ffffff;
@@ -22,7 +22,7 @@
       --color-muted:  #555555;
       --color-accent: #009688; /* Teal */
       --font-sans:    'Montserrat', sans-serif;
-      --header-h:     64px;
+      --header-h:     160px;    /* Total header height */
       --transition:   0.3s ease-in-out;
       --shadow-sm:    0 2px 6px rgba(0, 0, 0, 0.08);
       --shadow-md:    0 4px 12px rgba(0, 0, 0, 0.12);
@@ -50,20 +50,17 @@
       text-decoration: none;
       transition: filter var(--transition);
     }
-
     a:hover {
       filter: brightness(0.85);
     }
 
     h1, h2, h3 {
       font-weight: 600;
-      margin-bottom: 0.5rem;
       color: var(--color-dark);
     }
-
     p {
-      margin-bottom: 1rem;
       color: var(--color-muted);
+      margin-bottom: 1rem;
     }
 
     .container {
@@ -72,85 +69,86 @@
       padding: 0 1rem;
     }
 
-    /* =============
-       HEADER / PROFILE‐STYLE HERO
-       ============= */
-    .profile-hero {
+    /* ============================
+       HEADER (FLEX LAYOUT)
+       ============================ */
+    header.profile-header {
       background-color: var(--color-light);
-      padding-top: var(--header-h);
-      text-align: center;
-      padding-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      padding: 1rem 2rem;
       box-shadow: var(--shadow-sm);
-      position: sticky;
-      top: 0;
-      z-index: 50;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
     }
 
-    .profile-hero img {
-      width: 150px;
-      height: 150px;
+    /* LEFT SIDE: PROFILE IMAGE */
+    .profile-header .profile-photo {
+      flex: 0 0 auto;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       object-fit: cover;
       border: 4px solid var(--color-accent);
-      margin-top: 1rem;
       box-shadow: var(--shadow-sm);
+      margin-right: 2rem;
     }
 
-    .profile-hero h1 {
-      margin-top: 1rem;
+    /* RIGHT SIDE: NAME / TAGLINE / ICONS */
+    .profile-header .profile-info {
+      flex: 1 1 auto;
+      min-width: 200px;
+    }
+
+    .profile-header h1 {
       font-size: 2rem;
+      margin-bottom: 0.3rem;
     }
-
-    .profile-hero .tagline {
+    .profile-header .tagline {
       font-size: 1rem;
       font-weight: 300;
       color: var(--color-muted);
-      margin-top: 0.3rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
+      font-style: italic;
     }
 
-    .profile-hero .social-links {
+    .profile-header .social-icons {
       display: inline-flex;
-      gap: 1.2rem;
-      margin-top: 0.8rem;
+      gap: 1rem;
     }
-
-    .profile-hero .social-links a {
+    .profile-header .social-icons a {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       background-color: var(--color-dark);
       color: var(--color-light);
       transition: background-color var(--transition), transform var(--transition);
     }
-
-    .profile-hero .social-links a:hover {
+    .profile-header .social-icons a:hover {
       background-color: var(--color-accent);
       transform: translateY(-2px);
     }
-
-    .profile-hero .social-links svg {
-      width: 20px;
-      height: 20px;
+    .profile-header .social-icons svg {
+      width: 18px;
+      height: 18px;
       fill: currentColor;
     }
 
-    /* =============
-       SECTIONS (Experience, Projects, etc.)
-       ============= */
+    /* ============================
+       SECTIONS (Experience, Projects)
+       ============================ */
     section {
-      padding: 3rem 0 1.5rem;
+      padding: 2rem 0;
     }
     section:nth-of-type(even) {
       background-color: var(--color-light);
     }
-    section:nth-of-type(odd):not(.profile-hero) {
+    section:nth-of-type(odd) {
       background-color: var(--color-bg);
     }
-
     section h2 {
       font-size: 1.8rem;
       margin-bottom: 1.5rem;
@@ -178,13 +176,13 @@
       font-size: 1.1rem;
       font-weight: 600;
       color: var(--color-dark);
+      margin-bottom: 0.3rem;
     }
     .timeline .company-time {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-top: 0.3rem;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.7rem;
     }
     .timeline .company {
       font-size: 0.95rem;
@@ -201,7 +199,7 @@
       line-height: 1.5;
     }
 
-    /* Project Cards */
+    /* Projects Grid */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -238,7 +236,7 @@
       font-weight: 500;
     }
 
-    /* Footer */
+    /* Footer / Contact */
     footer {
       margin-top: 3rem;
       padding: 2rem 0;
@@ -247,14 +245,27 @@
       color: var(--color-muted);
     }
 
-    /* Responsive tweaks (if you ever choose to add a burger nav) */
-    @media (max-width: 600px) {
-      .profile-hero img {
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 640px) {
+      header.profile-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .profile-header .profile-photo {
+        margin-right: 0;
+        margin-bottom: 1rem;
         width: 120px;
         height: 120px;
       }
-      .profile-hero h1 {
+      .profile-header .profile-info {
+        width: 100%;
+      }
+      .profile-header h1 {
         font-size: 1.7rem;
+      }
+      .profile-header .social-icons {
+        justify-content: center;
       }
     }
   </style>
@@ -262,53 +273,80 @@
 
 <body>
   <!-- ===========================
-       PROFILE HERO (single top element)
+       HORIZONTAL HEADER BLOCK
        =========================== -->
-  <header class="profile-hero">
-    <!-- Replace "profile.jpg" with your actual photo filename -->
-    <img src="profile.jpg" alt="Shashank Vaidya" />
+  <header class="profile-header">
+    <!-- Left: Circular Photo -->
+    <!-- Make sure `profile.jpg` is in the same folder, or update the src -->
+    <img
+      class="profile-photo"
+      src="profile.jpg"
+      alt="Shashank Vaidya"
+    />
 
-    <h1>Shashank Vaidya</h1>
-    <p class="tagline">AI Engineer · Deep Learning · LLMs</p>
+    <!-- Right: Name / Tagline / Icons -->
+    <div class="profile-info">
+      <h1>Shashank Vaidya</h1>
+      <p class="tagline">AI Engineer · Deep Learning · LLMs</p>
 
-    <div class="social-links">
-      <!-- LinkedIn -->
-      <a href="https://www.linkedin.com/in/shashank-py/" target="_blank" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24">
-          <path
-            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.45-2.136 2.948v5.658H9.349V9h3.414v1.561h.049c.476-.9
-            1.637-1.85 3.369-1.85 3.602 0 4.268 2.371 4.268 5.455v6.286zM5.337
-            7.433a2.07 2.07 0 1 1 .001-4.139 2.07 2.07 0 0 1-.001 4.139zm1.777
-            13.019H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0
-            23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.729C24
-            .774 23.2 0 22.225 0z"
-          />
-        </svg>
-      </a>
+      <div class="social-icons">
+        <!-- LinkedIn Icon -->
+        <a href="https://www.linkedin.com/in/shashank-py/" target="_blank" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.45-2.136 
+              2.948v5.658H9.349V9h3.414v1.561h.049c.476-.9 1.637-1.85 
+              3.369-1.85 3.602 0 4.268 2.371 4.268 5.455v6.286zM5.337 7.433a2.07 
+              2.07 0 1 1 .001-4.139 2.07 2.07 0 0 1-.001 4.139zm1.777 
+              13.019H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .774 0 
+              1.729v20.542C0 23.226.792 24 1.771 24h20.451C23.2 
+              24 24 23.226 24 22.271V1.729C24 .774 23.2 0 22.225 0z"
+            />
+          </svg>
+        </a>
 
-      <!-- Email -->
-      <a href="mailto:shashank.v8899@gmail.com" aria-label="Email">
-        <svg viewBox="0 0 24 24">
-          <path
-            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 2v.01L12 13 20 6.01V6H4zm0 12h16V8l-8 5L4 8v10z"
-          />
-        </svg>
-      </a>
+        <!-- Email Icon -->
+        <a href="mailto:shashank.v8899@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 
+              2v12c0 1.1-.9 2-2 
+              2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 
+              2-2zm0 2v.01L12 13 20 
+              6.01V6H4zm0 12h16V8l-8 
+              5L4 8v10z"
+            />
+          </svg>
+        </a>
 
-      <!-- X (Twitter‐style @shashank_bot) -->
-      <a href="https://twitter.com/shashank_bot" target="_blank" aria-label="X (@shashank_bot)">
-        <svg viewBox="0 0 24 24">
-          <path
-            d="M23.444 4.834c-.814.362-1.688.607-2.604.716a4.555 4.555 0 0 0 2.006-2.515 9.05 9.05 0 0 1-2.885 1.104 4.524 4.524 0 0 0-7.713 3.897A12.83 12.83 0 0 1 1.641 3.15a4.52 4.52 0 0 0 1.401 6.03 4.51 4.51 0 0 1-2.052-.567v.06a4.525 4.525 0 0 0 3.632 4.436 4.521 4.521 0 0 1-2.043.078 4.525 4.525 0 0 0 4.222 3.14 9.066 9.066 0 0 1-5.61 1.935 9.22 9.22 0 0 1-1.077-.063 12.8 12.8 a0 0 0 0 0 0 0 .047 12.862 12.862 0 0 0 11.405 6.301 12.856 12.856 0 0 0 12.862-12.862 12.73 12.73 0 0 0-.01-.293A9.154 9.154 0 0 0 24 4.59a9.1 9.1 0 0 1-2.556.7z"
-          />
-        </svg>
-      </a>
+        <!-- X (formerly Twitter) Icon pointing to @shashank_bot -->
+        <a href="https://twitter.com/shashank_bot" target="_blank" aria-label="X (@shashank_bot)">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M23.444 4.834c-.814.362-1.688.607-2.604.716a4.555 4.555 0 0 
+              0 2.006-2.515 9.05 9.05 0 0 1-2.885 
+              1.104 4.524 4.524 0 0 0-7.713 
+              3.897A12.83 12.83 0 0 1 1.641 
+              3.15a4.52 4.52 0 0 0 1.401 
+              6.03 4.51 4.51 0 0 1-2.052-.567v.06a4.525 
+              4.525 0 0 0 3.632 4.436 4.521 4.521 0 0 
+              1-2.043.078 4.525 4.525 0 0 0 4.222 
+              3.14 9.066 9.066 0 0 1-5.61 
+              1.935 9.22 9.22 0 0 1-1.077-.063 12.8 12.8 
+              0 0 0 11.405 6.301 12.856 12.856 
+              0 0 0 12.862-12.862 12.73 12.73 0 0 0-.01-.293A9.154 
+              9.154 0 0 0 24 4.59a9.1 9.1 
+              0 0 1-2.556.7z"
+            />
+          </svg>
+        </a>
+      </div>
     </div>
   </header>
 
-  <!-- ===========================
+  <!-- ============================
        EXPERIENCE SECTION
-       =========================== -->
+       ============================ -->
   <section id="experience">
     <div class="container">
       <h2>Experience</h2>
@@ -335,17 +373,17 @@
           <div class="job-title">AI Engineer – Intern</div>
           <p>
             Automated product imagery pipelines and crafted personalized
-            marketing copy generators. Leveraged computer-vision models for
-            dynamic ad creatives, reducing manual design time by 60%.
+            marketing copy. Leveraged CV models for dynamic ad creatives,
+            reducing manual design time by 60%.
           </p>
         </li>
       </ul>
     </div>
   </section>
 
-  <!-- ===========================
+  <!-- ============================
        PROJECTS SECTION
-       =========================== -->
+       ============================ -->
   <section id="projects">
     <div class="container">
       <h2>Side Projects</h2>
@@ -365,8 +403,8 @@
           <h3>makeLM</h3>
           <p>
             A toy character-level language-model playground built from scratch
-            in NumPy. Experiment with temperature, sampling, and visualize how
-            probabilities shift as the model learns.
+            in NumPy. Experiment with sampling, temperature, and visualize how
+            probabilities shift during training.
           </p>
           <a href="https://github.com/shashank-vaidya/makeLM" target="_blank"
             >View on GitHub →</a
@@ -376,16 +414,15 @@
     </div>
   </section>
 
-  <!-- ===========================
-       CONTACT / FOOTER
-       =========================== -->
-  <footer id="contact">
-    <div class="container" style="text-align: center;">
-      <h2>Get in Touch</h2>
+  <!-- ============================
+       FOOTER / CONTACT
+       ============================ -->
+  <footer>
+    <div class="container">
       <p>
-        Feel free to drop me a line at
+        Feel free to email me at
         <a href="mailto:shashank.v8899@gmail.com">shashank.v8899@gmail.com</a>
-        or connect on
+        or find me on
         <a href="https://www.linkedin.com/in/shashank-py/" target="_blank"
           >LinkedIn</a
         >. You can also ping me on X:
