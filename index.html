@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <title>Shashank Vaidya – AI Engineer</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Google Font: Montserrat -->
   <link
@@ -12,20 +12,20 @@
   />
 
   <style>
-    /* --------------------------
+    /* =============
        VARIABLES & RESETS
-       -------------------------- */
+       ============= */
     :root {
-      --color-bg:    #f5f7fa;
-      --color-light: #ffffff;
-      --color-dark:  #1e1e1e;
-      --color-muted: #555555;
+      --color-bg:     #f5f7fa;
+      --color-light:  #ffffff;
+      --color-dark:   #1e1e1e;
+      --color-muted:  #555555;
       --color-accent: #009688; /* Teal */
-      --font-sans:   'Montserrat', sans-serif;
-      --header-h:    64px;
-      --transition:  0.3s ease-in-out;
-      --shadow-sm:   0 2px 6px rgba(0, 0, 0, 0.08);
-      --shadow-md:   0 4px 12px rgba(0, 0, 0, 0.12);
+      --font-sans:    'Montserrat', sans-serif;
+      --header-h:     64px;
+      --transition:   0.3s ease-in-out;
+      --shadow-sm:    0 2px 6px rgba(0, 0, 0, 0.08);
+      --shadow-md:    0 4px 12px rgba(0, 0, 0, 0.12);
     }
 
     * {
@@ -48,16 +48,16 @@
     a {
       color: var(--color-accent);
       text-decoration: none;
-      transition: color var(--transition);
+      transition: filter var(--transition);
     }
 
     a:hover {
-      color: darken(var(--color-accent), 10%);
+      filter: brightness(0.85);
     }
 
     h1, h2, h3 {
       font-weight: 600;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.5rem;
       color: var(--color-dark);
     }
 
@@ -66,128 +66,88 @@
       color: var(--color-muted);
     }
 
-    /* Utility */
     .container {
       max-width: 800px;
       margin: 0 auto;
       padding: 0 1rem;
     }
 
-    /* Simple darken function via filter — for hover states */
-    a:hover {
-      filter: brightness(0.9);
-    }
-
-    /* --------------------------
-       NAVBAR
-       -------------------------- */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: var(--header-h);
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 1rem;
-      box-shadow: var(--shadow-sm);
-      z-index: 100;
-    }
-
-    .navbar .logo {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--color-dark);
-      letter-spacing: 1px;
-    }
-
-    .navbar nav {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .navbar nav a {
-      font-size: 0.95rem;
-      position: relative;
-      padding: 0.2rem 0;
-      transition: color var(--transition);
-    }
-
-    .navbar nav a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      width: 0%;
-      height: 2px;
-      background: var(--color-accent);
-      transition: width var(--transition);
-    }
-
-    .navbar nav a:hover::after {
-      width: 100%;
-    }
-
-    /* Hamburger for mobile */
-    #nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--color-dark);
-    }
-
-    /* --------------------------
-       HERO / ABOUT
-       -------------------------- */
-    .hero {
-      height: calc(100vh - var(--header-h));
-      background: linear-gradient(135deg, #00b09b, #96c93d);
-      color: var(--color-light);
-      display: flex;
-      align-items: center;
-      text-align: center;
+    /* =============
+       HEADER / PROFILE‐STYLE HERO
+       ============= */
+    .profile-hero {
+      background-color: var(--color-light);
       padding-top: var(--header-h);
+      text-align: center;
+      padding-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 50;
     }
 
-    .hero .container {
-      max-width: 700px;
+    .profile-hero img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--color-accent);
+      margin-top: 1rem;
+      box-shadow: var(--shadow-sm);
     }
 
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+    .profile-hero h1 {
+      margin-top: 1rem;
+      font-size: 2rem;
     }
 
-    .hero .tagline {
-      font-size: 1.1rem;
-      font-weight: 300;
-      margin-bottom: 1.2rem;
-      opacity: 0.9;
-    }
-
-    .hero .intro {
+    .profile-hero .tagline {
       font-size: 1rem;
-      line-height: 1.8;
-      opacity: 0.9;
+      font-weight: 300;
+      color: var(--color-muted);
+      margin-top: 0.3rem;
+      margin-bottom: 1rem;
     }
 
-    /* --------------------------
-       SECTIONS
-       -------------------------- */
+    .profile-hero .social-links {
+      display: inline-flex;
+      gap: 1.2rem;
+      margin-top: 0.8rem;
+    }
+
+    .profile-hero .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--color-dark);
+      color: var(--color-light);
+      transition: background-color var(--transition), transform var(--transition);
+    }
+
+    .profile-hero .social-links a:hover {
+      background-color: var(--color-accent);
+      transform: translateY(-2px);
+    }
+
+    .profile-hero .social-links svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* =============
+       SECTIONS (Experience, Projects, etc.)
+       ============= */
     section {
-      padding: 4rem 0 2rem;
+      padding: 3rem 0 1.5rem;
     }
-
     section:nth-of-type(even) {
       background-color: var(--color-light);
     }
-
-    section:nth-of-type(odd):not(.hero-section) {
+    section:nth-of-type(odd):not(.profile-hero) {
       background-color: var(--color-bg);
     }
 
@@ -197,16 +157,13 @@
       text-align: center;
     }
 
-    /* --------------------------
-       EXPERIENCE CARDS
-       -------------------------- */
+    /* Experience Cards */
     .timeline {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
       list-style: none;
     }
-
     .timeline li {
       background-color: var(--color-light);
       border-radius: 8px;
@@ -214,17 +171,14 @@
       box-shadow: var(--shadow-sm);
       transition: box-shadow var(--transition);
     }
-
     .timeline li:hover {
       box-shadow: var(--shadow-md);
     }
-
     .timeline .job-title {
       font-size: 1.1rem;
       font-weight: 600;
       color: var(--color-dark);
     }
-
     .timeline .company-time {
       display: flex;
       justify-content: space-between;
@@ -232,33 +186,27 @@
       margin-top: 0.3rem;
       margin-bottom: 0.8rem;
     }
-
     .timeline .company {
       font-size: 0.95rem;
       color: var(--color-accent);
       font-weight: 500;
     }
-
     .timeline .time {
       font-size: 0.85rem;
       color: var(--color-muted);
     }
-
     .timeline p {
       font-size: 0.95rem;
       color: var(--color-muted);
       line-height: 1.5;
     }
 
-    /* --------------------------
-       PROJECT CARDS
-       -------------------------- */
+    /* Project Cards */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
     }
-
     .project-card {
       background-color: var(--color-light);
       border-radius: 8px;
@@ -269,24 +217,20 @@
       flex-direction: column;
       justify-content: space-between;
     }
-
     .project-card:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow-md);
     }
-
     .project-card h3 {
       margin-bottom: 0.5rem;
       font-size: 1.1rem;
       color: var(--color-dark);
     }
-
     .project-card p {
       font-size: 0.9rem;
       color: var(--color-muted);
       flex-grow: 1;
     }
-
     .project-card a {
       margin-top: 0.8rem;
       align-self: flex-start;
@@ -294,35 +238,7 @@
       font-weight: 500;
     }
 
-    /* --------------------------
-       CONTACT / FOOTER
-       -------------------------- */
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 1rem;
-    }
-
-    .contact-links a {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1rem;
-      color: var(--color-accent);
-      transition: color var(--transition);
-    }
-
-    .contact-links a:hover {
-      filter: brightness(0.9);
-    }
-
-    .contact-links svg {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
-    }
-
+    /* Footer */
     footer {
       margin-top: 3rem;
       padding: 2rem 0;
@@ -331,63 +247,68 @@
       color: var(--color-muted);
     }
 
-    /* --------------------------
-       RESPONSIVE NAVIGATION
-       -------------------------- */
-    @media (max-width: 768px) {
-      .navbar nav {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: var(--header-h);
-        left: 0;
-        right: 0;
-        background: var(--color-light);
-        padding: 1rem;
-        box-shadow: var(--shadow-sm);
+    /* Responsive tweaks (if you ever choose to add a burger nav) */
+    @media (max-width: 600px) {
+      .profile-hero img {
+        width: 120px;
+        height: 120px;
       }
-      .navbar nav a {
-        margin: 0.6rem 0;
-        font-size: 1rem;
-      }
-      #nav-toggle {
-        display: block;
-      }
-      body.menu-open nav {
-        display: flex;
+      .profile-hero h1 {
+        font-size: 1.7rem;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="logo">Shashank Vaidya</div>
-    <nav id="nav">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <button id="nav-toggle" aria-label="Toggle menu">☰</button>
+  <!-- ===========================
+       PROFILE HERO (single top element)
+       =========================== -->
+  <header class="profile-hero">
+    <!-- Replace "profile.jpg" with your actual photo filename -->
+    <img src="profile.jpg" alt="Shashank Vaidya" />
+
+    <h1>Shashank Vaidya</h1>
+    <p class="tagline">AI Engineer · Deep Learning · LLMs</p>
+
+    <div class="social-links">
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/shashank-py/" target="_blank" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.45-2.136 2.948v5.658H9.349V9h3.414v1.561h.049c.476-.9
+            1.637-1.85 3.369-1.85 3.602 0 4.268 2.371 4.268 5.455v6.286zM5.337
+            7.433a2.07 2.07 0 1 1 .001-4.139 2.07 2.07 0 0 1-.001 4.139zm1.777
+            13.019H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0
+            23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.729C24
+            .774 23.2 0 22.225 0z"
+          />
+        </svg>
+      </a>
+
+      <!-- Email -->
+      <a href="mailto:shashank.v8899@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 2v.01L12 13 20 6.01V6H4zm0 12h16V8l-8 5L4 8v10z"
+          />
+        </svg>
+      </a>
+
+      <!-- X (Twitter‐style @shashank_bot) -->
+      <a href="https://twitter.com/shashank_bot" target="_blank" aria-label="X (@shashank_bot)">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M23.444 4.834c-.814.362-1.688.607-2.604.716a4.555 4.555 0 0 0 2.006-2.515 9.05 9.05 0 0 1-2.885 1.104 4.524 4.524 0 0 0-7.713 3.897A12.83 12.83 0 0 1 1.641 3.15a4.52 4.52 0 0 0 1.401 6.03 4.51 4.51 0 0 1-2.052-.567v.06a4.525 4.525 0 0 0 3.632 4.436 4.521 4.521 0 0 1-2.043.078 4.525 4.525 0 0 0 4.222 3.14 9.066 9.066 0 0 1-5.61 1.935 9.22 9.22 0 0 1-1.077-.063 12.8 12.8 a0 0 0 0 0 0 0 .047 12.862 12.862 0 0 0 11.405 6.301 12.856 12.856 0 0 0 12.862-12.862 12.73 12.73 0 0 0-.01-.293A9.154 9.154 0 0 0 24 4.59a9.1 9.1 0 0 1-2.556.7z"
+          />
+        </svg>
+      </a>
+    </div>
   </header>
 
-  <!-- HERO / ABOUT -->
-  <section id="about" class="hero">
-    <div class="container">
-      <h1>Hey, I’m Shashank Vaidya.</h1>
-      <p class="tagline">AI Engineer · Deep Learning · LLMs</p>
-      <p class="intro">
-        I build pragmatic AI systems that bridge cutting-edge research to
-        real-world products. Currently, I’m crafting multi-agent LLM workflows
-        at <strong>SNCF Réseau</strong> in Paris. When I’m not staring at code, I’m
-        usually exploring new datasets or sketching neural nets on a café napkin.
-      </p>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
+  <!-- ===========================
+       EXPERIENCE SECTION
+       =========================== -->
   <section id="experience">
     <div class="container">
       <h2>Experience</h2>
@@ -401,7 +322,7 @@
           <p>
             Designed and deployed an agentic form-filling assistant using
             LangGraph, AWS Lambda, and Hugging Face models. Built monitoring
-            dashboards and iterated over prompt templates to achieve over 90%
+            dashboards and iterated prompt templates to achieve over 90%
             automated coverage for routine form tasks.
           </p>
         </li>
@@ -413,16 +334,18 @@
           </div>
           <div class="job-title">AI Engineer – Intern</div>
           <p>
-            Automated product imagery pipelines and crafted personalized marketing
-            copy generators. Leveraged computer vision models for dynamic ad
-            creatives, reducing manual design time by 60%.
+            Automated product imagery pipelines and crafted personalized
+            marketing copy generators. Leveraged computer-vision models for
+            dynamic ad creatives, reducing manual design time by 60%.
           </p>
         </li>
       </ul>
     </div>
   </section>
 
-  <!-- PROJECTS -->
+  <!-- ===========================
+       PROJECTS SECTION
+       =========================== -->
   <section id="projects">
     <div class="container">
       <h2>Side Projects</h2>
@@ -430,8 +353,8 @@
         <div class="project-card">
           <h3>smolGrad</h3>
           <p>
-            A micro-autograd engine in pure Python, designed to demystify back-
-            propagation and visualize computational graphs step by step.
+            A micro-autograd engine in pure Python, designed to demystify
+            back-propagation and visualize computational graphs step by step.
           </p>
           <a href="https://github.com/shashank-vaidya/smolGrad" target="_blank"
             >View on GitHub →</a
@@ -441,87 +364,35 @@
         <div class="project-card">
           <h3>makeLM</h3>
           <p>
-            A toy character-level language-model playground built from
-            scratch in NumPy. Experiment with temperature, sampling, and
-            visualize how probabilities shift as the model trains.
+            A toy character-level language-model playground built from scratch
+            in NumPy. Experiment with temperature, sampling, and visualize how
+            probabilities shift as the model learns.
           </p>
           <a href="https://github.com/shashank-vaidya/makeLM" target="_blank"
             >View on GitHub →</a
           >
         </div>
-
-        <!-- Example additional card:
-        <div class="project-card">
-          <h3>Another Project</h3>
-          <p>Short description of what it does and why it’s cool.</p>
-          <a href="https://github.com/yourusername/another-project" target="_blank"
-            >View on GitHub →</a
-          >
-        </div>
-        -->
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="container">
+  <!-- ===========================
+       CONTACT / FOOTER
+       =========================== -->
+  <footer id="contact">
+    <div class="container" style="text-align: center;">
       <h2>Get in Touch</h2>
-      <div class="contact-links">
-        <a href="mailto:shashank.v8899@gmail.com">
-          <!-- Email Icon SVG -->
-          <svg viewBox="0 0 24 24">
-            <path
-              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 2v.01L12 13 20 6.01V6H4zm0 12h16V8l-8 5L4 8v10z"
-            />
-          </svg>
-          Email
-        </a>
-        <a href="https://github.com/shashank-vaidya" target="_blank">
-          <!-- GitHub Icon SVG -->
-          <svg viewBox="0 0 24 24">
-            <path
-              d="M12 0C5.37 0 .004 5.37.004 12c0 5.3 3.438 9.8 8.207 11.385.6.113.82-.26.82-.577 
-              0-.285-.01-1.04-.015-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.385-1.33-1.755-1.33-1.755-1.088-.744.083-.729.083-.729 
-              1.204.085 1.838 1.236 1.838 1.236 1.07 1.835 2.806 1.305 3.492.997.108-.775.418-1.305.76-1.605-2.665-.303-5.466-1.332-5.466-5.93 
-              0-1.309.468-2.38 1.236-3.22-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 3 
-              -.405c1.02.005 2.045.138 3 .405 2.29-1.552 3.297-1.23 3.297-1.23.654 1.653.242 2.874.12 3.176.77.84 
-              1.235 1.911 1.235 3.22 0 4.61-2.807 5.624-5.48 5.92.429.37.81 1.103.81 2.222 0 1.606-.014 2.9-.014 3.293 
-              0 .319.216.694.825.577C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z"
-            />
-          </svg>
-          GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/shashank-py/" target="_blank">
-          <!-- LinkedIn Icon SVG -->
-          <svg viewBox="0 0 24 24">
-            <path
-              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 
-              0-2.136 1.45-2.136 2.948v5.658H9.349V9h3.414v1.561h.049c.476-.9 
-              1.637-1.85 3.369-1.85 3.602 0 4.268 2.371 4.268 5.455v6.286zM5.337 
-              7.433a2.07 2.07 0 1 1 .001-4.139 2.07 2.07 0 0 1-.001 4.139zm1.777 
-              13.019H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 
-              23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.729C24 
-              .774 23.2 0 22.225 0z"
-            />
-          </svg>
-          LinkedIn
-        </a>
-      </div>
+      <p>
+        Feel free to drop me a line at
+        <a href="mailto:shashank.v8899@gmail.com">shashank.v8899@gmail.com</a>
+        or connect on
+        <a href="https://www.linkedin.com/in/shashank-py/" target="_blank"
+          >LinkedIn</a
+        >. You can also ping me on X:
+        <a href="https://twitter.com/shashank_bot" target="_blank">@shashank_bot</a>.
+      </p>
+      <p>© 2025 Shashank Vaidya · Built with ❤️ on GitHub Pages</p>
     </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    © 2025 Shashank Vaidya · Built with ❤️ on GitHub Pages
   </footer>
-
-  <!-- MOBILE NAV TOGGLE SCRIPT -->
-  <script>
-    const btn = document.getElementById('nav-toggle');
-    btn?.addEventListener('click', () =>
-      document.body.classList.toggle('menu-open')
-    );
-  </script>
 </body>
 </html>
