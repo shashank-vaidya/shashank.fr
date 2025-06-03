@@ -12,9 +12,6 @@
   />
 
   <style>
-    /* ============================
-       VARIABLES & RESETS
-       ============================ */
     :root {
       --color-bg:     #f5f7fa;
       --color-light:  #ffffff;
@@ -72,24 +69,33 @@
        HEADER (FULL-WIDTH COVER PHOTO)
        ============================ */
     header.profile-header {
-      position: relative;             /* needed if you use the ::before overlay */
+      position: relative;
+
+      /* Make sure “cover.jpg” is actually in the SAME folder as this HTML.
+         If it’s in a subfolder, adjust to something like url('images/cover.jpg') */
+
       background-image: url('cover.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+
+      /* TEMPORARY: Ensure this header is at least 300px tall,
+         so you can immediately see the cover image behind it. */
+      min-height: 300px;
+
       color: var(--color-light);      /* white text/icons on top of the photo */
       display: flex;
       align-items: center;
-      justify-content: center;        /* center photo + info as before */
+      justify-content: center;        /* center avatar + info as before */
       gap: 2rem;                       /* space between avatar & text */
-      padding: 1rem 2rem;              /* same vertical/horizontal padding as before */
+      padding: 1rem 2rem;              /* same vertical/horizontal padding */
       box-shadow: var(--shadow-sm);
       margin-bottom: 2rem;
       flex-wrap: wrap;
-      text-align: center;
+      text-align: center;              /* center text if it wraps */
     }
 
-    /* Optional dark overlay for better text contrast */
+    /* Optional dark overlay, for better contrast on bright areas */
     header.profile-header::before {
       content: "";
       position: absolute;
@@ -102,14 +108,14 @@
       z-index: 1;
     }
 
-    /* PROFILE PHOTO (no ring) */
+    /* PROFILE PHOTO (no teal ring) */
     .profile-header .profile-photo {
       flex: 0 0 auto;
       width: 140px;
       height: 140px;
       border-radius: 50%;
       object-fit: cover;
-      /* border: removed, so no teal ring */
+      /* border removed: no teal ring */
       box-shadow: var(--shadow-sm);
     }
 
@@ -301,6 +307,7 @@
         align-items: center;
         text-align: center;
         gap: 1rem;
+        /* You can remove min-height on narrow screens if needed */
       }
       .profile-header .profile-photo {
         width: 120px;
@@ -317,18 +324,13 @@
 </head>
 
 <body>
-  <!-- ===========================
-       HORIZONTAL HEADER BLOCK
-       =========================== -->
   <header class="profile-header">
-    <!-- PROFILE PHOTO (no teal ring) -->
     <img
       class="profile-photo"
-      src="profile.jpg"
+      src="profile-new.jpg"
       alt="Shashank Vaidya"
     />
 
-    <!-- NAME / TAGLINE / SOCIAL ICONS -->
     <div class="profile-info">
       <h1>Shashank Vaidya</h1>
       <p class="tagline">AI Engineer · Deep Learning · LLMs</p>
@@ -388,76 +390,6 @@
     </div>
   </header>
 
-  <!-- ============================
-       EXPERIENCE SECTION
-       ============================ -->
-  <section id="experience">
-    <div class="container">
-      <h2>Experience</h2>
-      <ul class="timeline">
-        <li>
-          <span class="timeline-marker"></span>
-          <div class="company-time">
-            <span class="company">SNCF Réseau</span>
-            <span class="time">Mar 2025 – Present</span>
-          </div>
-          <div class="job-title">Data Scientist – LLM Intern</div>
-          <p>
-            Designed and deployed an agentic form-filling assistant using
-            LangGraph, AWS Lambda, and Hugging Face models. Built monitoring
-            dashboards and iterated prompt templates to achieve over 90%
-            automated coverage for routine form tasks.
-          </p>
-        </li>
-
-        <li>
-          <span class="timeline-marker"></span>
-          <div class="company-time">
-            <span class="company">MV Group</span>
-            <span class="time">Sept 2024 – Feb 2025</span>
-          </div>
-          <div class="job-title">AI Engineer – Intern</div>
-          <p>
-            Automated product imagery pipelines and crafted personalized
-            marketing copy. Leveraged CV models for dynamic ad creatives,
-            reducing manual design time by 60%.
-          </p>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ============================
-       PROJECTS SECTION
-       ============================ -->
-  <section id="projects">
-    <div class="container">
-      <h2>Side Projects</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>smolGrad</h3>
-          <p>
-            A micro-autograd engine in pure Python, designed to demystify
-            back-propagation and visualize computational graphs step by step.
-          </p>
-          <a href="https://github.com/shashank-vaidya/smolGrad" target="_blank"
-            >View on GitHub →</a
-          >
-        </div>
-
-        <div class="project-card">
-          <h3>makeLM</h3>
-          <p>
-            A toy character-level language-model playground built from scratch
-            in NumPy. Experiment with sampling, temperature, and visualize how
-            probabilities shift during training.
-          </p>
-          <a href="https://github.com/shashank-vaidya/makeLM" target="_blank"
-            >View on GitHub →</a
-          >
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- …rest of your sections… -->
 </body>
 </html>
