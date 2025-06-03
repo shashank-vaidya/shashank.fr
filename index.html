@@ -69,35 +69,53 @@
     }
 
     /* ============================
-       HEADER (FLEX LAYOUT, CENTERED)
+       HEADER (FULL-WIDTH COVER PHOTO)
        ============================ */
     header.profile-header {
-      background-color: var(--color-light);
+      position: relative;             /* needed if you use the ::before overlay */
+      background-image: url('cover.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: var(--color-light);      /* white text/icons on top of the photo */
       display: flex;
       align-items: center;
-      justify-content: center; /* Center both children as a group */
-      gap: 2rem;               /* Space between photo & info */
-      padding: 1rem 2rem;
+      justify-content: center;        /* center photo + info as before */
+      gap: 2rem;                       /* space between avatar & text */
+      padding: 1rem 2rem;              /* same vertical/horizontal padding as before */
       box-shadow: var(--shadow-sm);
       margin-bottom: 2rem;
       flex-wrap: wrap;
-      text-align: center;      /* Center text if it wraps */
+      text-align: center;
     }
 
-    /* PROFILE PHOTO (no teal ring => border removed) */
+    /* Optional dark overlay for better text contrast */
+    header.profile-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+    header.profile-header > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* PROFILE PHOTO (no ring) */
     .profile-header .profile-photo {
       flex: 0 0 auto;
       width: 140px;
       height: 140px;
       border-radius: 50%;
       object-fit: cover;
-      /* border: 4px solid var(--color-accent);  ← removed */
+      /* border: removed, so no teal ring */
       box-shadow: var(--shadow-sm);
     }
 
-    /* PROFILE INFO: name, tagline, social icons */
+    /* PROFILE INFO (name + tagline + icons) */
     .profile-header .profile-info {
-      flex: 0 0 auto;        /* Prevent growing on desktop */
+      flex: 0 0 auto;
       min-width: 200px;
     }
 
@@ -108,7 +126,7 @@
     .profile-header .tagline {
       font-size: 1rem;
       font-weight: 300;
-      color: var(--color-muted);
+      color: var(--color-light);    /* white on top of cover */
       margin-bottom: 0.8rem;
       font-style: italic;
     }
@@ -124,12 +142,13 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background-color: var(--color-dark);
-      color: var(--color-light);
+      background-color: var(--color-light);
+      color: var(--color-dark);
       transition: background-color var(--transition), transform var(--transition);
     }
     .profile-header .social-icons a:hover {
       background-color: var(--color-accent);
+      color: var(--color-light);
       transform: translateY(-2px);
     }
     .profile-header .social-icons svg {
@@ -302,7 +321,7 @@
        HORIZONTAL HEADER BLOCK
        =========================== -->
   <header class="profile-header">
-    <!-- PROFILE PHOTO (no teal border) -->
+    <!-- PROFILE PHOTO (no teal ring) -->
     <img
       class="profile-photo"
       src="profile.jpg"
@@ -344,7 +363,7 @@
           </svg>
         </a>
 
-        <!-- X (formerly Twitter) Icon -->
+        <!-- X (Twitter) Icon -->
         <a href="https://twitter.com/shashank_bot" target="_blank" aria-label="X (@shashank_bot)">
           <svg viewBox="0 0 24 24">
             <path
