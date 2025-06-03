@@ -1,30 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>Shashank Vaidya – AI Engineer</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!----—  ALL STYLES INLINED  —---->
+  <style>
+    /* Minimal palette à la karpathy.ai  */
+    :root{
+      --bg:#fff;
+      --fg:#222;
+      --accent:#0059ff;
+      --muted:#666;
+      --header-h:52px;
+      font-size:17px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:system-ui,sans-serif;line-height:1.55;background:var(--bg);color:var(--fg)}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /*--- fixed navbar (soumith.ch vibe) ---*/
+    .navbar{
+      position:fixed;inset:0 0 auto; /* top:0, left/right:0 */
+      height:var(--header-h);
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 1rem;
+      backdrop-filter:blur(6px);background:var(--bg);
+      border-bottom:1px solid #eee;
+      z-index:10;
+    }
+    .logo{font-weight:700;letter-spacing:.5px}
+    nav a{margin-left:1.2rem;font-size:.9rem}
+    #nav-toggle{display:none;background:none;border:none;font-size:1.5rem;line-height:1}
+
+    /*--- main layout ---*/
+    main{max-width:720px;margin:calc(var(--header-h)+2rem) auto 4rem;padding:0 1rem}
+    section{margin-bottom:2.5rem}
+    h1,h2{font-weight:600;margin-bottom:.8rem}
+    .tagline{color:var(--muted);margin-bottom:.8rem}
+    .intro{margin-bottom:1.6rem}
+
+    /* timeline */
+    .timeline{list-style:none;border-left:2px solid #eee;padding-left:1rem}
+    .timeline li{margin-bottom:1.4rem;position:relative}
+    .timeline li::before{
+      content:'';position:absolute;left:-10px;top:4px;
+      width:8px;height:8px;border-radius:50%;background:var(--accent)
+    }
+    .job-title{font-weight:500}
+    .company,.time{color:var(--muted);font-size:.85rem}
+
+    footer{text-align:center;padding:2rem 1rem;font-size:.85rem;color:var(--muted)}
+
+    /*--- mobile nav toggle ---*/
+    @media(max-width:600px){
+      #nav{display:none;flex-direction:column;position:absolute;top:var(--header-h);left:0;right:0;padding:.5rem 1rem;background:var(--bg);border-bottom:1px solid #eee}
+      #nav a{margin:.6rem 0}
+      #nav-toggle{display:block}
+      body.menu-open #nav{display:flex}
+    }
+  </style>
 </head>
 
 <body>
-  <!-- fixed header inspired by soumith.ch -->
+  <!----—  NAVBAR  —---->
   <header class="navbar">
     <div class="logo">SV</div>
+
     <nav id="nav">
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
+
+    <!-- Hamburger appears only on ≤600 px -->
     <button id="nav-toggle" aria-label="Toggle navigation">☰</button>
   </header>
 
+  <!----—  MAIN CONTENT  —---->
   <main>
-    <!-- karpathy.ai–style hero block -->
+    <!-- hero / about -->
     <section id="about" class="hero">
       <h1>Shashank&nbsp;Vaidya</h1>
-      <p class="tagline">AI&nbsp;Engineer · Deep Learning · LLMs</p>
+      <p class="tagline">AI&nbsp;Engineer · Deep&nbsp;Learning · LLMs</p>
       <p class="intro">
         I build pragmatic AI systems that turn research ideas into shipping
         products. Currently hacking on multi-agent LLM workflows at
@@ -32,32 +93,36 @@
       </p>
     </section>
 
+    <!-- experience timeline -->
     <section id="experience">
       <h2>Experience</h2>
       <ul class="timeline">
         <li>
-          <span class="job-title">Data Scientist – LLM Intern</span>
-          <span class="company">SNCF Réseau</span>
-          <span class="time">Mar 2025 – Present</span>
+          <span class="job-title">Data Scientist – LLM Intern</span><br />
+          <span class="company">SNCF Réseau</span> ·
+          <span class="time">Mar&nbsp;2025 – Present</span>
           <p>Agentic form-filling assistant (LangGraph / AWS / Hugging Face).</p>
         </li>
+
         <li>
-          <span class="job-title">AI Engineer – Intern</span>
-          <span class="company">MV Group</span>
+          <span class="job-title">AI Engineer – Intern</span><br />
+          <span class="company">MV Group</span> ·
           <span class="time">Sept 2024 – Feb 2025</span>
           <p>Automated product imagery &amp; personalized marketing copy.</p>
         </li>
       </ul>
     </section>
 
+    <!-- projects -->
     <section id="projects">
       <h2>Side&nbsp;Projects</h2>
       <ul>
         <li><a href="https://github.com/shashank-vaidya/smolGrad">smolGrad</a> – micro-autograd engine to demystify back-prop.</li>
-        <li><a href="https://github.com/shashank-vaidya/makeLM">makeLM</a> – toy character-level language model playground.</li>
+        <li><a href="https://github.com/shashank-vaidya/makeLM">makeLM</a> – toy character-level language-model playground.</li>
       </ul>
     </section>
 
+    <!-- contact -->
     <section id="contact">
       <h2>Contact</h2>
       <p>
@@ -69,9 +134,15 @@
   </main>
 
   <footer>
-    © 2025 Shashank Vaidya 
+    © 2025 Shashank Vaidya · Built with ❤️ and GitHub Pages
   </footer>
 
-  <script src="main.js"></script><!-- remove line if you skip JS -->
+  <!----—  TINY 6-LINE MOBILE JS  —---->
+  <script>
+    const btn = document.getElementById('nav-toggle');
+    btn?.addEventListener('click', () =>
+      document.body.classList.toggle('menu-open')
+    );
+  </script>
 </body>
 </html>
