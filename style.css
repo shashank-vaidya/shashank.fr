@@ -1,0 +1,50 @@
+/* Karpathy-esque minimal palette */
+:root {
+  --bg: #fff;
+  --fg: #222;
+  --accent: #0059ff;
+  --muted: #666;
+  --header-h: 52px;
+  font-size: 17px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: system-ui, sans-serif; line-height: 1.55; background: var(--bg); color: var(--fg); }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* --- navbar à la soumith.ch --- */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--header-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 1rem; background: var(--bg); border-bottom: 1px solid #eee;
+}
+.logo { font-weight: 700; letter-spacing: 1px; }
+.navbar nav a { margin-left: 1.2rem; font-size: .9rem; }
+#nav-toggle { display: none; background: none; border: none; font-size: 1.5rem; }
+
+/* --- layout --- */
+main { max-width: 720px; margin: calc(var(--header-h)+2rem) auto 4rem; padding: 0 1rem; }
+section { margin-bottom: 2.5rem; }
+h1, h2 { font-weight: 600; margin-bottom: .8rem; }
+.tagline { color: var(--muted); margin-bottom: .8rem; }
+.intro { margin-bottom: 1.6rem; }
+
+.timeline { list-style: none; border-left: 2px solid #eee; padding-left: 1rem; }
+.timeline li { margin-bottom: 1.4rem; position: relative; }
+.timeline li::before {
+  content: ''; position: absolute; left: -10px; top: 4px;
+  width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+}
+.job-title { font-weight: 500; }
+.company , .time { color: var(--muted); font-size: .85rem; }
+
+footer { text-align: center; padding: 2rem 1rem; font-size: .85rem; color: var(--muted); }
+
+/* --- responsive nav --- */
+@media (max-width: 600px) {
+  #nav { display: none; flex-direction: column; background: var(--bg); position: absolute; top: var(--header-h); left: 0; right: 0; padding: .5rem 1rem; border-bottom: 1px solid #eee; }
+  #nav a { margin: .6rem 0; }
+  #nav-toggle { display: block; }
+  body.menu-open #nav { display: flex; }
+}
