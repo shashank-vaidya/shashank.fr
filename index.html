@@ -76,10 +76,12 @@
       background-color: var(--color-light);
       display: flex;
       align-items: center;
+      justify-content: center; /* Center on all screen sizes */
       padding: 1rem 2rem;
       box-shadow: var(--shadow-sm);
       margin-bottom: 2rem;
       flex-wrap: wrap;
+      text-align: center; /* Ensure text is centered */
     }
 
     /* LEFT SIDE: PROFILE IMAGE */
@@ -153,6 +155,19 @@
       font-size: 1.8rem;
       margin-bottom: 1.5rem;
       text-align: center;
+      position: relative;
+      display: inline-block;
+    }
+    section h2::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -0.5rem;
+      width: 50px;
+      height: 3px;
+      background-color: var(--color-accent);
+      border-radius: 2px;
     }
 
     /* Experience Cards */
@@ -161,16 +176,41 @@
       flex-direction: column;
       gap: 1.5rem;
       list-style: none;
+      position: relative;
+      margin-left: 20px; /* space for vertical line */
+      padding-left: 20px;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background-color: var(--color-accent);
     }
     .timeline li {
+      position: relative;
       background-color: var(--color-light);
       border-radius: 8px;
       padding: 1.5rem;
       box-shadow: var(--shadow-sm);
       transition: box-shadow var(--transition);
+      overflow: visible;
     }
     .timeline li:hover {
       box-shadow: var(--shadow-md);
+    }
+    .timeline li .timeline-marker {
+      position: absolute;
+      left: -11px;
+      top: 1.2rem;
+      width: 22px;
+      height: 22px;
+      background-color: var(--color-accent);
+      border: 3px solid var(--color-light);
+      border-radius: 50%;
+      box-shadow: var(--shadow-sm);
     }
     .timeline .job-title {
       font-size: 1.1rem;
@@ -236,15 +276,6 @@
       font-weight: 500;
     }
 
-    /* Footer / Contact */
-    footer {
-      margin-top: 3rem;
-      padding: 2rem 0;
-      text-align: center;
-      font-size: 0.9rem;
-      color: var(--color-muted);
-    }
-
     /* ====== RESPONSIVE ====== */
     @media (max-width: 640px) {
       header.profile-header {
@@ -277,7 +308,6 @@
        =========================== -->
   <header class="profile-header">
     <!-- Left: Circular Photo -->
-    <!-- Make sure `profile.jpg` is in the same folder, or update the src -->
     <img
       class="profile-photo"
       src="profile.jpg"
@@ -352,6 +382,7 @@
       <h2>Experience</h2>
       <ul class="timeline">
         <li>
+          <span class="timeline-marker"></span>
           <div class="company-time">
             <span class="company">SNCF Réseau</span>
             <span class="time">Mar 2025 – Present</span>
@@ -366,6 +397,7 @@
         </li>
 
         <li>
+          <span class="timeline-marker"></span>
           <div class="company-time">
             <span class="company">MV Group</span>
             <span class="time">Sept 2024 – Feb 2025</span>
@@ -415,21 +447,7 @@
   </section>
 
   <!-- ============================
-       FOOTER / CONTACT
+       FOOTER / CONTACT REMOVED
        ============================ -->
-  <footer>
-    <div class="container">
-      <p>
-        Feel free to email me at
-        <a href="mailto:shashank.v8899@gmail.com">shashank.v8899@gmail.com</a>
-        or find me on
-        <a href="https://www.linkedin.com/in/shashank-py/" target="_blank"
-          >LinkedIn</a
-        >. You can also ping me on X:
-        <a href="https://twitter.com/shashank_bot" target="_blank">@shashank_bot</a>.
-      </p>
-      <p>© 2025 Shashank Vaidya · Built with ❤️ on GitHub Pages</p>
-    </div>
-  </footer>
 </body>
 </html>
