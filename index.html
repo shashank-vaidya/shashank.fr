@@ -6,10 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Google Font: Montserrat -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 
   <style>
     /* ============================
@@ -56,7 +53,6 @@
       background-image: url('cover.jpg');
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -79,13 +75,12 @@
 
     .profile-photo {
       flex: 0 0 auto;
-      width: 140px;
-      height: 140px;
+      width: 140px; height: 140px;
       border-radius: 50%;
       object-fit: cover;
       box-shadow: var(--shadow-sm);
     }
-    .profile-info { flex: 0 0 auto; min-width: 200px; }
+    .profile-info { min-width: 200px; }
     .profile-info h1 { font-size: 2rem; margin-bottom: 0.3rem; }
     .profile-info .tagline {
       font-size: 1rem;
@@ -102,33 +97,37 @@
       justify-content: center;
       width: 36px; height: 36px;
       border-radius: 50%;
-      background-color: var(--color-light);
+      background: var(--color-light);
       color: var(--color-dark);
-      transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+      transition: background-color .3s, transform .3s;
     }
     .social-icons a:hover {
-      background-color: var(--color-accent);
+      background: var(--color-accent);
       color: var(--color-light);
       transform: translateY(-2px);
     }
     .social-icons img { width: 18px; height: 18px; }
 
-    /* ============================
-       NEW TIMELINE STYLE
-       ============================ */
-    .timeline-wrapper { position: relative; margin: 3rem 0; }
-
-    /* Vertical spine */
-    .timeline-wrapper::before {
-      content: "";
-      position: absolute;
-      left: 220px;             /* distance from container edge */
-      top: 0; bottom: 0;
-      width: 2px;
-      background: #cfcfcf;
+    /* ───────────────────────────────────
+       MOBILE HEADER HEIGHT GUARD
+       ─────────────────────────────────── */
+    @media (max-width:640px){
+      header.profile-header{
+        min-height: 200px;      /* keeps nice aspect ratio */
+        background-size: cover; /* defensively re-state */
+      }
     }
 
-    /* Each event row */
+    /* ============================
+       KARPATHY-STYLE TIMELINE
+       ============================ */
+    .timeline-wrapper { position: relative; margin: 3rem 0; }
+    .timeline-wrapper::before {
+      content:""; position:absolute;
+      left: 220px; top:0; bottom:0;
+      width:2px; background:#cfcfcf;
+    }
+
     .timeline-event {
       position: relative;
       display: flex;
@@ -136,120 +135,87 @@
       margin-bottom: 3rem;
       flex-wrap: wrap;
     }
-
-    /* Year column */
     .timeline-year {
       width: 200px;
       text-align: right;
       padding-right: 20px;
-      color: #b7b7b7;
-      font-size: 0.95rem;
-      line-height: 1.2;
-      user-select: none;
+      color:#b7b7b7;
+      font-size:.95rem; line-height:1.2;
+      user-select:none;
     }
-
-    /* Dot on the spine */
-    .timeline-dot {
-      position: absolute;
-      left: 211px;             /* 220 – (dot radius + border) */
-      top: 0.35rem;
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      background: #cfcfcf;
-      border: 2px solid #ffffff;
-      box-sizing: border-box;
+    .timeline-dot{
+      position:absolute;
+      left:211px; top:.35rem;
+      width:12px; height:12px;
+      border-radius:50%;
+      background:#cfcfcf;
+      border:2px solid #fff;
+      box-sizing:border-box;
     }
+    .timeline-body{ flex:1 1 0; display:flex; gap:1.25rem; }
 
-    /* Right-hand body */
-    .timeline-body { flex: 1 1 0; display: flex; gap: 1.25rem; }
-
-    /* Square logo (optional) */
-    .timeline-logo {
-      flex: 0 0 90px;
-      max-width: 90px;
-      border-radius: 6px;
-      object-fit: cover;
-      box-shadow: 0 0 0 1px #e5e5e5;
+    /* SHRUNK, SQUARE LOGO BADGE */
+    .timeline-logo{
+      flex:0 0 64px; width:64px; height:64px;
+      aspect-ratio:1/1;
+      padding:4px;
+      background:#fff;
+      border-radius:6px;
+      object-fit:contain;          /* show whole logo */
+      box-shadow:0 0 0 1px #e5e5e5;
     }
+    .timeline-desc strong{display:block;font-size:1.1rem;margin-bottom:.25rem;}
+    .timeline-desc em   {display:block;font-style:italic;color:#777;margin-bottom:.75rem;}
+    .timeline-desc p    {margin-bottom:.5rem;font-size:.95rem;}
+    .timeline-desc a    {color:var(--color-accent);font-weight:500;}
 
-    /* Description */
-    .timeline-desc strong { display: block; font-size: 1.1rem; margin-bottom: 0.25rem; }
-    .timeline-desc em    { display: block; font-style: italic; color: #777; margin-bottom: 0.75rem; }
-    .timeline-desc p     { margin-bottom: 0.5rem; font-size: 0.95rem; }
-    .timeline-desc a     { color: var(--color-accent); font-weight: 500; }
-
-    /* MOBILE */
-    @media (max-width: 640px) {
-      .timeline-wrapper::before { left: 140px; }
-      .timeline-year { width: 120px; padding-right: 12px; font-size: 0.85rem; }
-      .timeline-dot { left: 133px; }
-      .timeline-logo { flex: 0 0 70px; max-width: 70px; }
+    /* MOBILE tweaks for timeline */
+    @media (max-width:640px){
+      .timeline-wrapper::before{left:140px;}
+      .timeline-year{width:120px;padding-right:12px;font-size:.85rem;}
+      .timeline-dot{left:133px;}
+      .timeline-logo{flex:0 0 48px;width:48px;height:48px;}
     }
 
     /* ============================
        SECTIONS (Projects)
        ============================ */
-    section:nth-of-type(even) { background-color: var(--color-light); }
-    section:nth-of-type(odd)  { background-color: var(--color-bg); }
-    section h2 {
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-      text-align: center;
-      position: relative;
-      display: inline-block;
+    section:nth-of-type(even){background:var(--color-light);}
+    section:nth-of-type(odd) {background:var(--color-bg);}
+    section h2{
+      font-size:1.8rem; margin-bottom:1.5rem;
+      text-align:center; position:relative; display:inline-block;
     }
-    section h2::after {
-      content: "";
-      position: absolute;
-      left: 50%; transform: translateX(-50%);
-      bottom: -0.5rem;
-      width: 50px; height: 3px;
-      background-color: var(--color-accent);
-      border-radius: 2px;
+    section h2::after{
+      content:""; position:absolute; left:50%; transform:translateX(-50%);
+      bottom:-.5rem; width:50px; height:3px;
+      background:var(--color-accent); border-radius:2px;
     }
 
     /* PROJECTS GRID */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:1.5rem;
     }
-    .project-card {
-      background-color: var(--color-light);
-      border-radius: 8px;
-      padding: 1.2rem;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+    .project-card{
+      background:var(--color-light);
+      border-radius:8px; padding:1.2rem;
+      box-shadow:var(--shadow-sm);
+      transition:transform .3s, box-shadow .3s;
+      display:flex; flex-direction:column; justify-content:space-between;
     }
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
-    .project-card h3 {
-      margin-bottom: 0.5rem;
-      font-size: 1.1rem;
-      color: var(--color-dark);
-    }
-    .project-card p { font-size: 0.9rem; color: var(--color-muted); flex-grow: 1; }
-    .project-card a {
-      margin-top: 0.8rem;
-      align-self: flex-start;
-      color: var(--color-accent);
-      font-weight: 500;
-    }
+    .project-card:hover{transform:translateY(-4px); box-shadow:var(--shadow-md);}
+    .project-card h3{margin-bottom:.5rem;font-size:1.1rem;color:var(--color-dark);}
+    .project-card p{font-size:.9rem;color:var(--color-muted);flex-grow:1;}
+    .project-card a{margin-top:.8rem;align-self:flex-start;color:var(--color-accent);font-weight:500;}
 
     /* Responsive header adjustments */
-    @media (max-width: 640px) {
-      header.profile-header {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      .profile-photo { width: 120px; height: 120px; }
-      .profile-info h1 { font-size: 1.7rem; }
-      .social-icons { justify-content: center; }
+    @media (max-width:640px){
+      header.profile-header{flex-direction:column;gap:1rem;}
+      .profile-photo{width:120px;height:120px;}
+      .profile-info h1{font-size:1.7rem;}
+      .social-icons{justify-content:center;}
     }
   </style>
 </head>
@@ -259,7 +225,7 @@
        HORIZONTAL HEADER BLOCK
        =========================== -->
   <header class="profile-header">
-    <img class="profile-photo" src="avatar.jpg" alt="Shashank Vaidya" />
+    <img class="profile-photo" src="avatar.jpg" alt="Shashank Vaidya"/>
 
     <div class="profile-info">
       <h1>Shashank Vaidya</h1>
@@ -267,20 +233,20 @@
 
       <div class="social-icons">
         <a href="https://www.linkedin.com/in/shashank-py/" target="_blank" aria-label="LinkedIn">
-          <img src="assets/linkedin_logo.png" alt="LinkedIn" />
+          <img src="assets/linkedin_logo.png" alt="LinkedIn"/>
         </a>
-        <a href="mailto:shashank.v8899@gmail.com" aria-label="Email (Gmail)">
-          <img src="assets/gmail_logo.svg" alt="Email (Gmail)" />
+        <a href="mailto:shashank.v8899@gmail.com" aria-label="Email">
+          <img src="assets/gmail_logo.svg" alt="Email"/>
         </a>
-        <a href="https://twitter.com/shashank_bot" target="_blank" aria-label="X (@shashank_bot)">
-          <img src="assets/x_logo.png" alt="X (@shashank_bot)" />
+        <a href="https://twitter.com/shashank_bot" target="_blank" aria-label="X (Twitter)">
+          <img src="assets/x_logo.png" alt="Twitter"/>
         </a>
       </div>
     </div>
   </header>
 
   <!-- ============================
-       EXPERIENCE SECTION (TIMELINE)
+       EXPERIENCE TIMELINE
        ============================ -->
   <section id="experience">
     <div class="container">
@@ -292,13 +258,12 @@
           <div class="timeline-dot"></div>
 
           <div class="timeline-body">
-            <img src="assets/sncf_logo.svg" alt="SNCF Réseau" class="timeline-logo">
+            <img src="assets/sncf_logo.svg" alt="SNCF Réseau" class="timeline-logo"/>
             <div class="timeline-desc">
               <strong>Data Scientist · LLM Intern</strong>
               <em>Paris, France</em>
               <p>
-                • Built an agentic assistant for complex form auto-fill
-                  (LangGraph + AWS Lambda + Hugging Face).<br>
+                • Built an agentic assistant for complex form auto-fill (LangGraph + AWS Lambda + Hugging Face).<br>
                 • Modular multi-agent architecture (Planner, QA, Retriever, …).<br>
                 • Reduced manual data entry by <b>90 %</b>.
               </p>
@@ -312,15 +277,13 @@
           <div class="timeline-dot"></div>
 
           <div class="timeline-body">
-            <!-- delete <img> if you prefer dot-only style -->
-            <img src="assets/mv_group_logo.png" alt="MV Group" class="timeline-logo">
+            <img src="assets/mv_group_logo.png" alt="MV Group" class="timeline-logo"/>
             <div class="timeline-desc">
               <strong>AI Engineer · Intern</strong>
               <em>Rennes, France</em>
               <p>
                 • Automated realistic product-image background generation.<br>
-                • GCP image-processing pipeline and LangGraph copy-writer cut
-                  content creation time by 80 %.
+                • GCP image-processing pipeline and LangGraph copy-writer cut content creation time by 80 %.
               </p>
             </div>
           </div>
@@ -332,49 +295,48 @@
           <div class="timeline-dot"></div>
 
           <div class="timeline-body">
-            <img src="assets/epita_logo.png" alt="EPITA" class="timeline-logo">
+            <img src="assets/epita_logo.png" alt="EPITA" class="timeline-logo"/>
             <div class="timeline-desc">
               <strong>MSc Data Science & Analytics</strong>
               <em>EPITA · Paris</em>
               <p>
                 • Advanced ML, NLP, MLOps.<br>
-                • Real-time churn-prediction pipeline
-                  (Airflow → FastAPI → Grafana).
+                • Real-time churn-prediction pipeline (Airflow → FastAPI → Grafana).
               </p>
             </div>
           </div>
         </div>
 
-        <!-- RGPV Tech University -->
+        <!-- RGPV -->
         <div class="timeline-event">
           <div class="timeline-year">2020 – 2022</div>
           <div class="timeline-dot"></div>
 
           <div class="timeline-body">
-            <img src="assets/rgpv_logo.png" alt="RGPV" class="timeline-logo">
+            <img src="assets/rgpv_logo.png" alt="RGPV" class="timeline-logo"/>
             <div class="timeline-desc">
-              <strong>MCA – Computer Applications</strong>
+              <strong>MCA · Computer Applications</strong>
               <em>RGPV Tech University · Indore</em>
               <p>
-                • Specialized in algorithms, data structures, software eng.<br>
+                • Specialized in algorithms, data structures & software engineering.<br>
                 • Capstone: scalable Django-based campus portal.
               </p>
             </div>
           </div>
         </div>
 
-        <!-- Medicaps University -->
+        <!-- Medicaps -->
         <div class="timeline-event">
           <div class="timeline-year">2017 – 2020</div>
           <div class="timeline-dot"></div>
 
           <div class="timeline-body">
-            <img src="assets/medicaps_logo.png" alt="Medicaps University" class="timeline-logo">
+            <img src="assets/medicaps_logo.png" alt="Medicaps University" class="timeline-logo"/>
             <div class="timeline-desc">
-              <strong>BSc – Computer Applications</strong>
+              <strong>BSc · Computer Applications</strong>
               <em>Medicaps University · Indore</em>
               <p>
-                • CS fundamentals: OS, DBMS, Web Dev.<br>
+                • Core CS fundamentals: OS, DBMS, Web Dev.<br>
                 • Senior project: Inventory Management System (Django + PostgreSQL).
               </p>
             </div>
@@ -395,25 +357,14 @@
       <div class="projects-grid">
         <div class="project-card">
           <h3>smolGrad</h3>
-          <p>
-            A micro-autograd engine in pure Python that visualizes back-prop
-            computations step by step.
-          </p>
-          <a href="https://github.com/shashank-vaidya/smolGrad" target="_blank">
-            View on GitHub →
-          </a>
+          <p>A micro-autograd engine in pure Python that visualises back-prop step-by-step.</p>
+          <a href="https://github.com/shashank-vaidya/smolGrad" target="_blank">View on GitHub →</a>
         </div>
 
         <div class="project-card">
           <h3>makeLM</h3>
-          <p>
-            A toy character-level language-model playground built from scratch
-            in NumPy. Experiment with sampling temperature and watch
-            probabilities shift during training.
-          </p>
-          <a href="https://github.com/shashank-vaidya/makeLM" target="_blank">
-            View on GitHub →
-          </a>
+          <p>A tiny character-level language-model playground built from scratch in NumPy.</p>
+          <a href="https://github.com/shashank-vaidya/makeLM" target="_blank">View on GitHub →</a>
         </div>
       </div>
     </div>
