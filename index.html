@@ -26,15 +26,8 @@
       --shadow-md:    0 4px 12px rgba(0, 0, 0, 0.12);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--font-sans);
@@ -48,57 +41,33 @@
       text-decoration: none;
       transition: filter 0.3s ease-in-out;
     }
-    a:hover {
-      filter: brightness(0.85);
-    }
+    a:hover { filter: brightness(0.85); }
 
-    h1, h2, h3 {
-      font-weight: 600;
-      color: var(--color-dark);
-    }
-    p {
-      color: var(--color-muted);
-      margin-bottom: 1rem;
-    }
+    h1, h2, h3 { font-weight: 600; color: var(--color-dark); }
+    p { color: var(--color-muted); margin-bottom: 1rem; }
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 1rem; }
 
     /* ============================
        HEADER (FULL-WIDTH COVER PHOTO)
        ============================ */
     header.profile-header {
       position: relative;
-
-      /* Cover image (must be in the same folder as this HTML) */
       background-image: url('cover.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-
-      /* Center children horizontally + vertically (avatar + info) */
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 2rem;
       padding: 1rem 2rem;
-
-      /* Text and icons should be white on top of cover */
       color: var(--color-light);
-
-      /* Small drop-shadow under the header */
       box-shadow: var(--shadow-sm);
       margin-bottom: 2rem;
-
-      /* Allow wrapping on small screens */
       flex-wrap: wrap;
       text-align: center;
     }
-
-    /* Dark overlay behind content for contrast */
     header.profile-header::before {
       content: "";
       position: absolute;
@@ -106,12 +75,8 @@
       background-color: rgba(0, 0, 0, 0.4);
       z-index: 0;
     }
-    header.profile-header > * {
-      position: relative;
-      z-index: 1;
-    }
+    header.profile-header > * { position: relative; z-index: 1; }
 
-    /* PROFILE PHOTO (named avatar.jpg) */
     .profile-photo {
       flex: 0 0 auto;
       width: 140px;
@@ -120,17 +85,8 @@
       object-fit: cover;
       box-shadow: var(--shadow-sm);
     }
-
-    /* PROFILE INFO (name + tagline + social icons) */
-    .profile-info {
-      flex: 0 0 auto;
-      min-width: 200px;
-    }
-
-    .profile-info h1 {
-      font-size: 2rem;
-      margin-bottom: 0.3rem;
-    }
+    .profile-info { flex: 0 0 auto; min-width: 200px; }
+    .profile-info h1 { font-size: 2rem; margin-bottom: 0.3rem; }
     .profile-info .tagline {
       font-size: 1rem;
       font-weight: 300;
@@ -139,16 +95,12 @@
       margin-bottom: 0.8rem;
     }
 
-    .social-icons {
-      display: inline-flex;
-      gap: 1rem;
-    }
+    .social-icons { display: inline-flex; gap: 1rem; }
     .social-icons a {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 36px;
-      height: 36px;
+      width: 36px; height: 36px;
       border-radius: 50%;
       background-color: var(--color-light);
       color: var(--color-dark);
@@ -159,138 +111,86 @@
       color: var(--color-light);
       transform: translateY(-2px);
     }
-    .social-icons img {
-      width: 18px;
-      height: 18px;
-    }
-
+    .social-icons img { width: 18px; height: 18px; }
 
     /* ============================
-       EXPERIENCE TIMELINE (GRID-BASED)
+       NEW TIMELINE STYLE
        ============================ */
-    .timeline-container {
-      position: relative;
-      margin: 2rem 0;
-      /* Reserve 80px on the left: 60px for year + 20px for marker column */
-      padding-left: 100px;
-    }
-    /* Draw a 1px-wide vertical line at the center of columns 1+2: 60px + (20px/2) = 70px, plus additional 30px offset = 100px total left padding? Actually: new left = 80px + 10px = 90px */
-    .timeline-container::before {
+    .timeline-wrapper { position: relative; margin: 3rem 0; }
+
+    /* Vertical spine */
+    .timeline-wrapper::before {
       content: "";
       position: absolute;
-      left: 90px;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background-color: var(--color-accent);
+      left: 220px;             /* distance from container edge */
+      top: 0; bottom: 0;
+      width: 2px;
+      background: #cfcfcf;
     }
 
-    .timeline {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .timeline li {
-      display: grid;
-      /* three columns: [60px for year] [20px for marker] [flex for content] */
-      grid-template-columns: 60px 20px 1fr;
-      grid-template-rows: auto;
-      align-items: start; /* align marker to top of content */
-      margin-bottom: 2rem;
+    /* Each event row */
+    .timeline-event {
       position: relative;
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
     }
 
-    /* YEAR (column 1): right-aligned within 60px */
-    .timeline .year {
-      grid-column: 1;
-      justify-self: end;
-      font-size: 0.9rem;
-      color: var(--color-muted);
-      white-space: nowrap;
-      /* move it left of vertical line */
-      margin-left: -20px; /* push year 20px further left to match screenshot spacing */
+    /* Year column */
+    .timeline-year {
+      width: 200px;
+      text-align: right;
+      padding-right: 20px;
+      color: #b7b7b7;
+      font-size: 0.95rem;
+      line-height: 1.2;
+      user-select: none;
     }
 
-    /* MARKER (column 2): 10×10 circle centered in that 20px */
-    .timeline .marker {
-      grid-column: 2;
-      width: 10px;
-      height: 10px;
+    /* Dot on the spine */
+    .timeline-dot {
+      position: absolute;
+      left: 211px;             /* 220 – (dot radius + border) */
+      top: 0.35rem;
+      width: 12px; height: 12px;
       border-radius: 50%;
-      background-color: var(--color-light);
-      border: 2px solid var(--color-accent);
-      box-shadow: var(--shadow-sm);
-      justify-self: center;
-      margin-top: 0; /* aligned with top of content */
-      overflow: hidden;
-    }
-    /* For SNCF, show the logo inside the circle */
-    .timeline .marker img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+      background: #cfcfcf;
+      border: 2px solid #ffffff;
+      box-sizing: border-box;
     }
 
-    /* CONTENT (column 3): simple text flow */
-    .timeline .content {
-      grid-column: 3;
-    }
-    .timeline .content strong {
-      display: block;
-      font-size: 1.1rem;
-      margin-bottom: 0.25rem;
-      color: var(--color-dark);
-    }
-    .timeline .content em {
-      display: block;
-      font-size: 0.95rem;
-      color: var(--color-muted);
-      margin-bottom: 0.75rem;
-      font-style: italic;
-    }
-    .timeline .content p {
-      font-size: 0.95rem;
-      color: var(--color-dark);
-      line-height: 1.5;
-      margin-bottom: 0.5rem;
-    }
-    .timeline .content a {
-      color: var(--color-accent);
-      font-weight: 500;
+    /* Right-hand body */
+    .timeline-body { flex: 1 1 0; display: flex; gap: 1.25rem; }
+
+    /* Square logo (optional) */
+    .timeline-logo {
+      flex: 0 0 90px;
+      max-width: 90px;
+      border-radius: 6px;
+      object-fit: cover;
+      box-shadow: 0 0 0 1px #e5e5e5;
     }
 
-    /* RESPONSIVE ADJUSTMENTS */
+    /* Description */
+    .timeline-desc strong { display: block; font-size: 1.1rem; margin-bottom: 0.25rem; }
+    .timeline-desc em    { display: block; font-style: italic; color: #777; margin-bottom: 0.75rem; }
+    .timeline-desc p     { margin-bottom: 0.5rem; font-size: 0.95rem; }
+    .timeline-desc a     { color: var(--color-accent); font-weight: 500; }
+
+    /* MOBILE */
     @media (max-width: 640px) {
-      .timeline-container {
-        padding-left: 80px;
-      }
-      .timeline-container::before {
-        left: 70px; /* 60px + (20px/2) = 70px */
-      }
-      .timeline li {
-        grid-template-columns: 40px 20px 1fr; /* shrink year column */
-      }
-      .timeline .year {
-        font-size: 0.8rem;
-        margin-left: -15px; /* smaller offset on mobile */
-      }
-      .timeline .marker {
-        width: 8px;
-        height: 8px;
-      }
+      .timeline-wrapper::before { left: 140px; }
+      .timeline-year { width: 120px; padding-right: 12px; font-size: 0.85rem; }
+      .timeline-dot { left: 133px; }
+      .timeline-logo { flex: 0 0 70px; max-width: 70px; }
     }
-
 
     /* ============================
        SECTIONS (Projects)
        ============================ */
-    section:nth-of-type(even) {
-      background-color: var(--color-light);
-    }
-    section:nth-of-type(odd) {
-      background-color: var(--color-bg);
-    }
+    section:nth-of-type(even) { background-color: var(--color-light); }
+    section:nth-of-type(odd)  { background-color: var(--color-bg); }
     section h2 {
       font-size: 1.8rem;
       margin-bottom: 1.5rem;
@@ -301,11 +201,9 @@
     section h2::after {
       content: "";
       position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 50%; transform: translateX(-50%);
       bottom: -0.5rem;
-      width: 50px;
-      height: 3px;
+      width: 50px; height: 3px;
       background-color: var(--color-accent);
       border-radius: 2px;
     }
@@ -335,11 +233,7 @@
       font-size: 1.1rem;
       color: var(--color-dark);
     }
-    .project-card p {
-      font-size: 0.9rem;
-      color: var(--color-muted);
-      flex-grow: 1;
-    }
+    .project-card p { font-size: 0.9rem; color: var(--color-muted); flex-grow: 1; }
     .project-card a {
       margin-top: 0.8rem;
       align-self: flex-start;
@@ -347,26 +241,15 @@
       font-weight: 500;
     }
 
-    /* ============================
-       RESPONSIVE HEADER ADJUSTMENTS
-       ============================ */
+    /* Responsive header adjustments */
     @media (max-width: 640px) {
       header.profile-header {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
         gap: 1rem;
       }
-      .profile-photo {
-        width: 120px;
-        height: 120px;
-      }
-      .profile-info h1 {
-        font-size: 1.7rem;
-      }
-      .social-icons {
-        justify-content: center;
-      }
+      .profile-photo { width: 120px; height: 120px; }
+      .profile-info h1 { font-size: 1.7rem; }
+      .social-icons { justify-content: center; }
     }
   </style>
 </head>
@@ -376,52 +259,21 @@
        HORIZONTAL HEADER BLOCK
        =========================== -->
   <header class="profile-header">
-    <!-- PROFILE PHOTO: named avatar.jpg -->
-    <img
-      class="profile-photo"
-      src="avatar.jpg"
-      alt="Shashank Vaidya"
-    />
+    <img class="profile-photo" src="avatar.jpg" alt="Shashank Vaidya" />
 
-    <!-- NAME / TAGLINE / SOCIAL ICONS -->
     <div class="profile-info">
       <h1>Shashank Vaidya</h1>
       <p class="tagline">AI Engineer · Deep Learning · LLMs</p>
 
       <div class="social-icons">
-        <!-- LinkedIn Icon -->
-        <a
-          href="https://www.linkedin.com/in/shashank-py/"
-          target="_blank"
-          aria-label="LinkedIn"
-        >
-          <img
-            src="assets/linkedin_logo.png"
-            alt="LinkedIn"
-          />
+        <a href="https://www.linkedin.com/in/shashank-py/" target="_blank" aria-label="LinkedIn">
+          <img src="assets/linkedin_logo.png" alt="LinkedIn" />
         </a>
-
-        <!-- Email (Gmail) Icon -->
-        <a
-          href="mailto:shashank.v8899@gmail.com"
-          aria-label="Email (Gmail)"
-        >
-          <img
-            src="assets/gmail_logo.svg"
-            alt="Email (Gmail)"
-          />
+        <a href="mailto:shashank.v8899@gmail.com" aria-label="Email (Gmail)">
+          <img src="assets/gmail_logo.svg" alt="Email (Gmail)" />
         </a>
-
-        <!-- X (Twitter) Icon -->
-        <a
-          href="https://twitter.com/shashank_bot"
-          target="_blank"
-          aria-label="X (@shashank_bot)"
-        >
-          <img
-            src="assets/x_logo.png"
-            alt="X (@shashank_bot)"
-          />
+        <a href="https://twitter.com/shashank_bot" target="_blank" aria-label="X (@shashank_bot)">
+          <img src="assets/x_logo.png" alt="X (@shashank_bot)" />
         </a>
       </div>
     </div>
@@ -432,98 +284,103 @@
        ============================ -->
   <section id="experience">
     <div class="container">
-      <div class="timeline-container">
-        <ul class="timeline">
-          <!-- 1) SNCF Réseau (Mar 2025 – Present) -->
-          <li>
-            <div class="year">2025 – Present</div>
-            <div class="marker">
-              <!-- Using sncf_logo.svg inside the circle -->
-              <img src="assets/sncf_logo.svg" alt="SNCF Réseau" />
-            </div>
-            <div class="content">
-              <strong>Data Scientist – LLM Intern</strong>
-              <em>SNCF Réseau, Paris, France</em>
-              <em>Mar 2025 – Present</em>
-              <p>
-                • Built an agentic AI assistant to auto-fill complex forms using LangGraph + AWS Lambda + Hugging Face.<br/>
-                • Implemented a modular multi-agent architecture (Planner, QA, Retriever, Formatter, State Manager).<br/>
-                • Automated parsing/formatting of user inputs to meet domain-specific requirements, reducing manual data entry by 90%.<br/>
-                • Integrated a reflection/validation agent for schema compliance in production.
-              </p>
-            </div>
-          </li>
+      <div class="timeline-wrapper">
 
-          <!-- 2) MV Group (Sept 2024 – Feb 2025) -->
-          <li>
-            <div class="year">2024 – 2025</div>
-            <div class="marker">
-              <!-- No logo provided, will show empty circle -->
-            </div>
-            <div class="content">
-              <strong>AI Engineer – Intern</strong>
-              <em>MV Group, Rennes, France</em>
-              <em>Sept 2024 – Feb 2025</em>
-              <p>
-                • Automated realistic product-image background generation using inpainted people.<br/>
-                • Built an image-processing pipeline for real-time metadata updates on GCP.<br/>
-                • Used LangGraph + GPT-4o + Chroma DB to generate personalized marketing copy.<br/>
-                • Deployed a Streamlit app to automate image/newsletter creation—cutting content time by 80%.
-              </p>
-            </div>
-          </li>
+        <!-- SNCF Réseau -->
+        <div class="timeline-event">
+          <div class="timeline-year">2025 – Present</div>
+          <div class="timeline-dot"></div>
 
-          <!-- 3) EPITA – Master’s in Data Science & Analytics (Mar 2023 – Mar 2025) -->
-          <li>
-            <div class="year">2023 – 2025</div>
-            <div class="marker">
-              <!-- No logo provided for EPITA, will show circle -->
-            </div>
-            <div class="content">
-              <strong>Master’s in Data Science &amp; Analytics</strong>
-              <em>EPITA, Paris, France</em>
-              <em>Mar 2023 – Mar 2025</em>
+          <div class="timeline-body">
+            <img src="assets/sncf_logo.svg" alt="SNCF Réseau" class="timeline-logo">
+            <div class="timeline-desc">
+              <strong>Data Scientist · LLM Intern</strong>
+              <em>Paris, France</em>
               <p>
-                • Coursework: Advanced Machine Learning, Deep Learning, NLP, MLOps.<br/>
-                • Final project: “Customer Churn Prediction”—built a real-time pipeline (Airflow → FastAPI → PostgreSQL → Grafana) and a TensorFlow model to identify churn drivers.
+                • Built an agentic assistant for complex form auto-fill
+                  (LangGraph + AWS Lambda + Hugging Face).<br>
+                • Modular multi-agent architecture (Planner, QA, Retriever, …).<br>
+                • Reduced manual data entry by <b>90 %</b>.
               </p>
             </div>
-          </li>
+          </div>
+        </div>
 
-          <!-- 4) RGPV Tech University – Master’s in Computer Applications (Aug 2020 – May 2022) -->
-          <li>
-            <div class="year">2020 – 2022</div>
-            <div class="marker">
-              <!-- No logo provided for RGPV, will show circle -->
-            </div>
-            <div class="content">
-              <strong>Master’s in Computer Applications</strong>
-              <em>RGPV Tech University, Indore, India</em>
-              <em>Aug 2020 – May 2022</em>
-              <p>
-                • Specialized in Algorithms, Data Structures, and Software Engineering.<br/>
-                • Capstone project: Developed a scalable Django-based campus services portal (PostgreSQL backend).
-              </p>
-            </div>
-          </li>
+        <!-- MV Group -->
+        <div class="timeline-event">
+          <div class="timeline-year">2024 – 2025</div>
+          <div class="timeline-dot"></div>
 
-          <!-- 5) Medicaps University – Bachelor’s in Computer Applications (Aug 2017 – May 2020) -->
-          <li>
-            <div class="year">2017 – 2020</div>
-            <div class="marker">
-              <!-- No logo provided for Medicaps, will show circle -->
-            </div>
-            <div class="content">
-              <strong>Bachelor’s in Computer Applications</strong>
-              <em>Medicaps University, Indore, India</em>
-              <em>Aug 2017 – May 2020</em>
+          <div class="timeline-body">
+            <!-- delete <img> if you prefer dot-only style -->
+            <img src="assets/mv_group_logo.png" alt="MV Group" class="timeline-logo">
+            <div class="timeline-desc">
+              <strong>AI Engineer · Intern</strong>
+              <em>Rennes, France</em>
               <p>
-                • Covered core CS fundamentals: Operating Systems, DBMS, Web Development.<br/>
-                • Senior project: “Inventory Management System”—full-stack solution (Django + PostgreSQL) for local retailers.
+                • Automated realistic product-image background generation.<br>
+                • GCP image-processing pipeline and LangGraph copy-writer cut
+                  content creation time by 80 %.
               </p>
             </div>
-          </li>
-        </ul>
+          </div>
+        </div>
+
+        <!-- EPITA -->
+        <div class="timeline-event">
+          <div class="timeline-year">2023 – 2025</div>
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-body">
+            <img src="assets/epita_logo.png" alt="EPITA" class="timeline-logo">
+            <div class="timeline-desc">
+              <strong>MSc Data Science & Analytics</strong>
+              <em>EPITA · Paris</em>
+              <p>
+                • Advanced ML, NLP, MLOps.<br>
+                • Real-time churn-prediction pipeline
+                  (Airflow → FastAPI → Grafana).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RGPV Tech University -->
+        <div class="timeline-event">
+          <div class="timeline-year">2020 – 2022</div>
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-body">
+            <img src="assets/rgpv_logo.png" alt="RGPV" class="timeline-logo">
+            <div class="timeline-desc">
+              <strong>MCA – Computer Applications</strong>
+              <em>RGPV Tech University · Indore</em>
+              <p>
+                • Specialized in algorithms, data structures, software eng.<br>
+                • Capstone: scalable Django-based campus portal.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Medicaps University -->
+        <div class="timeline-event">
+          <div class="timeline-year">2017 – 2020</div>
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-body">
+            <img src="assets/medicaps_logo.png" alt="Medicaps University" class="timeline-logo">
+            <div class="timeline-desc">
+              <strong>BSc – Computer Applications</strong>
+              <em>Medicaps University · Indore</em>
+              <p>
+                • CS fundamentals: OS, DBMS, Web Dev.<br>
+                • Senior project: Inventory Management System (Django + PostgreSQL).
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -534,30 +391,29 @@
   <section id="projects">
     <div class="container">
       <h2>Side Projects</h2>
+
       <div class="projects-grid">
         <div class="project-card">
           <h3>smolGrad</h3>
           <p>
-            A micro-autograd engine in pure Python, designed to demystify
-            back-propagation and visualize computational graphs step by step.
+            A micro-autograd engine in pure Python that visualizes back-prop
+            computations step by step.
           </p>
-          <a
-            href="https://github.com/shashank-vaidya/smolGrad"
-            target="_blank"
-          >View on GitHub →</a>
+          <a href="https://github.com/shashank-vaidya/smolGrad" target="_blank">
+            View on GitHub →
+          </a>
         </div>
 
         <div class="project-card">
           <h3>makeLM</h3>
           <p>
             A toy character-level language-model playground built from scratch
-            in NumPy. Experiment with sampling, temperature, and visualize how
+            in NumPy. Experiment with sampling temperature and watch
             probabilities shift during training.
           </p>
-          <a
-            href="https://github.com/shashank-vaidya/makeLM"
-            target="_blank"
-          >View on GitHub →</a>
+          <a href="https://github.com/shashank-vaidya/makeLM" target="_blank">
+            View on GitHub →
+          </a>
         </div>
       </div>
     </div>
