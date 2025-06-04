@@ -111,7 +111,7 @@
       z-index: 1;
     }
 
-    /* PROFILE PHOTO (renamed to avatar.jpg) */
+    /* PROFILE PHOTO (named avatar.jpg) */
     .profile-photo {
       flex: 0 0 auto;
       width: 140px;
@@ -227,7 +227,7 @@
     .timeline li:hover {
       box-shadow: var(--shadow-md);
     }
-    .timeline li .timeline-marker {
+    .timeline .timeline-marker {
       position: absolute;
       left: -11px;
       top: 1.2rem;
@@ -329,7 +329,7 @@
        HORIZONTAL HEADER BLOCK
        =========================== -->
   <header class="profile-header">
-    <!-- PROFILE PHOTO: renamed to avatar.jpg -->
+    <!-- PROFILE PHOTO: named avatar.jpg -->
     <img
       class="profile-photo"
       src="avatar.jpg"
@@ -343,16 +343,20 @@
 
       <div class="social-icons">
         <!-- LinkedIn Icon -->
-        <a href="https://www.linkedin.com/in/shashank-py/" target="_blank" aria-label="LinkedIn">
+        <a
+          href="https://www.linkedin.com/in/shashank-py/"
+          target="_blank"
+          aria-label="LinkedIn"
+        >
           <svg viewBox="0 0 24 24">
             <path
               d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.45-2.136 
-              2.948v5.658H9.349V9h3.414v1.561h.049c.476-.9 1.637-1.85 
-              3.369-1.85 3.602 0 4.268 2.371 4.268 5.455v6.286zM5.337 7.433a2.07 
-              2.07 0 1 1 .001-4.139 2.07 2.07 0 0 1-.001 4.139zm1.777 
-              13.019H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .774 0 
-              1.729v20.542C0 23.226.792 24 1.771 24h20.451C23.2 
-              24 24 23.226 24 22.271V1.729C24 .774 23.2 0 22.225 0z"
+                 2.948v5.658H9.349V9h3.414v1.561h.049c.476-.9 1.637-1.85 
+                 3.369-1.85 3.602 0 4.268 2.371 4.268 5.455v6.286zM5.337 7.433a2.07 
+                 2.07 0 1 1 .001-4.139 2.07 2.07 0 0 1-.001 4.139zm1.777 
+                 13.019H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .774 0 
+                 1.729v20.542C0 23.226.792 24 1.771 24h20.451C23.2 
+                 24 24 23.226 24 22.271V1.729C24 .774 23.2 0 22.225 0z"
             />
           </svg>
         </a>
@@ -362,33 +366,37 @@
           <svg viewBox="0 0 24 24">
             <path
               d="M4 4h16c1.1 0 2 .9 2 
-              2v12c0 1.1-.9 2-2 
-              2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 
-              2-2zm0 2v.01L12 13 20 
-              6.01V6H4zm0 12h16V8l-8 
-              5L4 8v10z"
+                 2v12c0 1.1-.9 2-2 
+                 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 
+                 2-2zm0 2v.01L12 13 20 
+                 6.01V6H4zm0 12h16V8l-8 
+                 5L4 8v10z"
             />
           </svg>
         </a>
 
         <!-- X (Twitter) Icon -->
-        <a href="https://twitter.com/shashank_bot" target="_blank" aria-label="X (@shashank_bot)">
+        <a
+          href="https://twitter.com/shashank_bot"
+          target="_blank"
+          aria-label="X (@shashank_bot)"
+        >
           <svg viewBox="0 0 24 24">
             <path
               d="M23.444 4.834c-.814.362-1.688.607-2.604.716a4.555 4.555 0 0 
-              0 2.006-2.515 9.05 9.05 0 0 1-2.885 
-              1.104 4.524 4.524 0 0 0-7.713 
-              3.897A12.83 12.83 0 0 1 1.641 
-              3.15a4.52 4.52 0 0 0 1.401 
-              6.03 4.51 4.51 0 0 1-2.052-.567v.06a4.525 
-              4.525 0 0 0 3.632 4.436 4.521 4.521 0 0 
-              1-2.043.078 4.525 4.525 0 0 0 4.222 
-              3.14 9.066 9.066 0 0 1-5.61 
-              1.935 9.22 9.22 0 0 1-1.077-.063 12.8 12.8 
-              0 0 0 11.405 6.301 12.856 12.856 
-              0 0 0 12.862-12.862 12.73 12.73 0 0 0-.01-.293A9.154 
-              9.154 0 0 0 24 4.59a9.1 9.1 
-              0 0 1-2.556.7z"
+                 0 2.006-2.515 9.05 9.05 0 0 1-2.885 
+                 1.104 4.524 4.524 0 0 0-7.713 
+                 3.897A12.83 12.83 0 0 1 1.641 
+                 3.15a4.52 4.52 0 0 0 1.401 
+                 6.03 4.51 4.51 0 0 1-2.052-.567v.06a4.525 
+                 4.525 0 0 0 3.632 4.436 4.521 4.521 0 0 
+                 1-2.043.078 4.525 4.525 0 0 0 4.222 
+                 3.14 9.066 9.066 0 0 1-5.61 
+                 1.935 9.22 9.22 0 0 1-1.077-.063 12.8 12.8 
+                 0 0 0 11.405 6.301 12.856 12.856 
+                 0 0 0 12.862-12.862 12.73 12.73 0 0 0-.01-.293A9.154 
+                 9.154 0 0 0 24 4.59a9.1 9.1 
+                 0 0 1-2.556.7z"
             />
           </svg>
         </a>
@@ -448,9 +456,10 @@
             A micro-autograd engine in pure Python, designed to demystify
             back-propagation and visualize computational graphs step by step.
           </p>
-          <a href="https://github.com/shashank-vaidya/smolGrad" target="_blank"
-            >View on GitHub →</a
-          >
+          <a
+            href="https://github.com/shashank-vaidya/smolGrad"
+            target="_blank"
+          >View on GitHub →</a>
         </div>
 
         <div class="project-card">
@@ -460,9 +469,10 @@
             in NumPy. Experiment with sampling, temperature, and visualize how
             probabilities shift during training.
           </p>
-          <a href="https://github.com/shashank-vaidya/makeLM" target="_blank"
-            >View on GitHub →</a
-          >
+          <a
+            href="https://github.com/shashank-vaidya/makeLM"
+            target="_blank"
+          >View on GitHub →</a>
         </div>
       </div>
     </div>
