@@ -164,21 +164,24 @@
       height: 18px;
     }
 
+
     /* ============================
-       TIMELINE (EXPERIENCE ONLY)
+       EXPERIENCE TIMELINE (REVISED)
        ============================ */
     .timeline-container {
       position: relative;
       margin: 2rem 0;
-      padding-left: 80px; /* leave room for years & the line */
+      /* We reserve 60px on the left for “year” and 20px extra so content doesn’t butt up against the line */
+      padding-left: 80px;
     }
+    /* Draw the vertical line, 1px wide */
     .timeline-container::before {
       content: "";
       position: absolute;
-      left: 40px;      /* center of the line */
+      left: 30px;    /* center of that reserved 60px is at 30px */
       top: 0;
       bottom: 0;
-      width: 1px;      /* very thin line */
+      width: 1px;
       background-color: var(--color-accent);
     }
 
@@ -188,27 +191,40 @@
       padding: 0;
     }
     .timeline li {
+      display: flex;
       position: relative;
       margin-bottom: 2rem;
     }
+    /* Left column (60px) holds year and marker */
+    .timeline .li-left {
+      position: relative;
+      flex: 0 0 60px; /* fixed width */
+      height: auto;
+    }
+    /* Right column holds the content */
+    .timeline .li-content {
+      flex: 1;
+      padding-left: 20px; /* some gap between line and content */
+    }
 
-    /* Year label on left, overlapping the line */
+    /* YEAR: right-aligned in that 60px column */
     .timeline .year {
-      position: absolute;
-      left: 0;         /* sits at the left edge */
-      top: 0;
       font-size: 0.9rem;
       color: var(--color-muted);
+      text-align: right;
+      position: absolute;
+      right: 0;
+      top: 0;  /* aligned with top of this li */
       white-space: nowrap;
     }
 
-    /* Circle marker on the line */
+    /* CIRCLE MARKER */
     .timeline .marker {
       position: absolute;
-      left: 35px;      /* 40px(line) - half marker width (10px) = 35px */
-      top: 0;
-      width: 20px;
-      height: 20px;
+      left: 25px; /* center the 10px circle at 30px line: 30px - (10px/2) = 25px */
+      top: 0;     /* aligned with top of this li */
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background-color: var(--color-light);
       border: 2px solid var(--color-accent);
@@ -218,43 +234,60 @@
       justify-content: center;
       overflow: hidden;
     }
-    /* If you have small logos (e.g. sncf_logo.png) in /assets/, uncomment below: */
+    /* If you have small logos, place an <img> here and uncomment: */
     .timeline .marker img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
 
-    /* Content block to the right of the line */
-    .timeline .content {
-      margin-left: 60px;  /* leave space for the marker + line */
+    /* CONTENT BOX */
+    .timeline .li-content p,
+    .timeline .li-content strong,
+    .timeline .li-content em {
       color: var(--color-dark);
       font-size: 0.95rem;
       line-height: 1.5;
+      margin-bottom: 0.5rem;
     }
-    .timeline .content a {
+    .timeline .li-content strong {
+      font-size: 1.1rem;
+      color: var(--color-dark);
+      display: block;
+    }
+    .timeline .li-content em {
+      color: var(--color-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .timeline .li-content a {
       color: var(--color-accent);
       font-weight: 500;
     }
 
-    /* ====== RESPONSIVE ====== */
+    /* RESPONSIVE ADJUSTMENTS */
     @media (max-width: 640px) {
       .timeline-container {
         padding-left: 60px;
       }
       .timeline-container::before {
-        left: 30px;
+        left: 20px;
       }
-      .timeline .marker {
-        left: 25px;
+      .timeline .li-left {
+        flex: 0 0 40px;
       }
       .timeline .year {
         font-size: 0.8rem;
+        right: 0;
       }
-      .timeline .content {
-        margin-left: 50px;
+      .timeline .marker {
+        left: 15px; /* (line 20px) - (circle 10px /2) = 15px */
+      }
+      .timeline .li-content {
+        padding-left: 15px;
       }
     }
+
 
     /* ============================
        SECTIONS (Projects)
@@ -410,85 +443,105 @@
         <ul class="timeline">
           <!-- 1) SNCF Réseau (Mar 2025 – Present) -->
           <li>
-            <div class="year">2025 – Present</div>
-            <div class="marker">
-              <!-- Uncomment if you have "sncf_logo.png" in assets/ -->
-              <!-- <img src="assets/sncf_logo.png" alt="SNCF Réseau" /> -->
+            <div class="li-left">
+              <div class="year">2025 – Present</div>
+              <div class="marker">
+                <!-- Uncomment if you have "sncf_logo.png" in assets/ -->
+                <!-- <img src="assets/sncf_logo.png" alt="SNCF Réseau" /> -->
+              </div>
             </div>
-            <div class="content">
-              <strong>Data Scientist – LLM Intern</strong><br/>
-              SNCF Réseau, Paris, France<br/>
-              <em>Mar 2025 – Present</em><br/><br/>
-              • Built an agentic AI assistant to auto-fill complex forms using LangGraph + AWS Lambda + Hugging Face.<br/>
-              • Implemented a modular multi-agent architecture (Planner, QA, Retriever, Formatter, State Manager).<br/>
-              • Automated parsing/formatting of user inputs to meet domain-specific requirements, reducing manual data entry by 90%.<br/>
-              • Integrated a reflection/validation agent for schema compliance in production.
+            <div class="li-content">
+              <strong>Data Scientist – LLM Intern</strong>
+              <em>SNCF Réseau, Paris, France</em>
+              <em>Mar 2025 – Present</em>
+              <p>
+                • Built an agentic AI assistant to auto-fill complex forms using LangGraph + AWS Lambda + Hugging Face.<br/>
+                • Implemented a modular multi-agent architecture (Planner, QA, Retriever, Formatter, State Manager).<br/>
+                • Automated parsing/formatting of user inputs to meet domain-specific requirements, reducing manual data entry by 90%.<br/>
+                • Integrated a reflection/validation agent for schema compliance in production.
+              </p>
             </div>
           </li>
 
           <!-- 2) MV Group (Sept 2024 – Feb 2025) -->
           <li>
-            <div class="year">2024 – 2025</div>
-            <div class="marker">
-              <!-- Uncomment if you have "mvgroup_logo.png" in assets/ -->
-              <!-- <img src="assets/mvgroup_logo.png" alt="MV Group" /> -->
+            <div class="li-left">
+              <div class="year">2024 – 2025</div>
+              <div class="marker">
+                <!-- Uncomment if you have "mvgroup_logo.png" in assets/ -->
+                <!-- <img src="assets/mvgroup_logo.png" alt="MV Group" /> -->
+              </div>
             </div>
-            <div class="content">
-              <strong>AI Engineer – Intern</strong><br/>
-              MV Group, Rennes, France<br/>
-              <em>Sept 2024 – Feb 2025</em><br/><br/>
-              • Automated realistic product‐image background generation using inpainted people.<br/>
-              • Built an image processing pipeline for real-time metadata updates on GCP.<br/>
-              • Used LangGraph + GPT-4o + Chroma DB to generate personalized marketing copy. <br/>
-              • Deployed a Streamlit app to automate image/newsletter creation—cutting content time by 80%.
+            <div class="li-content">
+              <strong>AI Engineer – Intern</strong>
+              <em>MV Group, Rennes, France</em>
+              <em>Sept 2024 – Feb 2025</em>
+              <p>
+                • Automated realistic product-image background generation using inpainted people.<br/>
+                • Built an image-processing pipeline for real-time metadata updates on GCP.<br/>
+                • Used LangGraph + GPT-4o + Chroma DB to generate personalized marketing copy.<br/>
+                • Deployed a Streamlit app to automate image/newsletter creation—cutting content time by 80%.
+              </p>
             </div>
           </li>
 
           <!-- 3) EPITA – Master's in Data Science & Analytics (Mar 2023 – Mar 2025) -->
           <li>
-            <div class="year">2023 – 2025</div>
-            <div class="marker">
-              <!-- Uncomment if you have "epita_logo.png" in assets/ -->
-              <!-- <img src="assets/epita_logo.png" alt="EPITA" /> -->
+            <div class="li-left">
+              <div class="year">2023 – 2025</div>
+              <div class="marker">
+                <!-- Uncomment if you have "epita_logo.png" in assets/ -->
+                <!-- <img src="assets/epita_logo.png" alt="EPITA" /> -->
+              </div>
             </div>
-            <div class="content">
-              <strong>Master’s in Data Science &amp; Analytics</strong><br/>
-              EPITA, Paris, France<br/>
-              <em>Mar 2023 – Mar 2025</em><br/><br/>
-              • Coursework: Advanced Machine Learning, Deep Learning, NLP, MLOps.<br/>
-              • Final project: “Customer Churn Prediction”—built a real-time pipeline (Airflow → FastAPI → PostgreSQL → Grafana) and a TensorFlow model to identify churn drivers.
-            </div>
-          </li>
-
-          <!-- 4) RGPV Tech University – Master’s in Computer Applications (Aug 2020 – May 2022) -->
-          <li>
-            <div class="year">2020 – 2022</div>
-            <div class="marker">
-              <!-- Uncomment if you have "rgpv_logo.png" in assets/ -->
-              <!-- <img src="assets/rgpv_logo.png" alt="RGPV Tech University" /> -->
-            </div>
-            <div class="content">
-              <strong>Master’s in Computer Applications</strong><br/>
-              RGPV Tech University, Indore, India<br/>
-              <em>Aug 2020 – May 2022</em><br/><br/>
-              • Specialized in Algorithms, Data Structures, and Software Engineering.<br/>
-              • Capstone project: Developed a scalable Django-based campus services portal (PostgreSQL backend).
+            <div class="li-content">
+              <strong>Master’s in Data Science & Analytics</strong>
+              <em>EPITA, Paris, France</em>
+              <em>Mar 2023 – Mar 2025</em>
+              <p>
+                • Coursework: Advanced Machine Learning, Deep Learning, NLP, MLOps.<br/>
+                • Final project: “Customer Churn Prediction”—built a real-time pipeline (Airflow → FastAPI → PostgreSQL → Grafana) and a TensorFlow model to identify churn drivers.
+              </p>
             </div>
           </li>
 
-          <!-- 5) Medicaps University – Bachelor’s in Computer Applications (Aug 2017 – May 2020) -->
+          <!-- 4) RGPV Tech University – Master's in Computer Applications (Aug 2020 – May 2022) -->
           <li>
-            <div class="year">2017 – 2020</div>
-            <div class="marker">
-              <!-- Uncomment if you have "medicaps_logo.png" in assets/ -->
-              <!-- <img src="assets/medicaps_logo.png" alt="Medicaps University" /> -->
+            <div class="li-left">
+              <div class="year">2020 – 2022</div>
+              <div class="marker">
+                <!-- Uncomment if you have "rgpv_logo.png" in assets/ -->
+                <!-- <img src="assets/rgpv_logo.png" alt="RGPV Tech University" /> -->
+              </div>
             </div>
-            <div class="content">
-              <strong>Bachelor’s in Computer Applications</strong><br/>
-              Medicaps University, Indore, India<br/>
-              <em>Aug 2017 – May 2020</em><br/><br/>
-              • Covered core CS fundamentals: Operating Systems, DBMS, Web Development.<br/>
-              • Senior project: “Inventory Management System”—full-stack solution (Django + PostgreSQL) for local retailers.
+            <div class="li-content">
+              <strong>Master’s in Computer Applications</strong>
+              <em>RGPV Tech University, Indore, India</em>
+              <em>Aug 2020 – May 2022</em>
+              <p>
+                • Specialized in Algorithms, Data Structures, and Software Engineering.<br/>
+                • Capstone project: Developed a scalable Django-based campus services portal (PostgreSQL backend).
+              </p>
+            </div>
+          </li>
+
+          <!-- 5) Medicaps University – Bachelor's in Computer Applications (Aug 2017 – May 2020) -->
+          <li>
+            <div class="li-left">
+              <div class="year">2017 – 2020</div>
+              <div class="marker">
+                <!-- Uncomment if you have "medicaps_logo.png" in assets/ -->
+                <!-- <img src="assets/medicaps_logo.png" alt="Medicaps University" /> -->
+              </div>
+            </div>
+            <div class="li-content">
+              <strong>Bachelor’s in Computer Applications</strong>
+              <em>Medicaps University, Indore, India</em>
+              <em>Aug 2017 – May 2020</em>
+              <p>
+                • Covered core CS fundamentals: Operating Systems, DBMS, Web Development.<br/>
+                • Senior project: “Inventory Management System”—full-stack solution (Django + PostgreSQL) for local retailers.
+              </p>
             </div>
           </li>
         </ul>
