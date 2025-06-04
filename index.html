@@ -33,11 +33,7 @@
       color: var(--color-dark);
     }
 
-    a {
-      color: var(--color-accent);
-      text-decoration: none;
-      transition: filter 0.3s ease-in-out;
-    }
+    a { color: var(--color-accent); text-decoration: none; transition: filter .3s; }
     a:hover { filter: brightness(0.85); }
 
     h1, h2, h3 { font-weight: 600; color: var(--color-dark); }
@@ -46,130 +42,71 @@
     .container { max-width: 800px; margin: 0 auto; padding: 0 1rem; }
 
     /* ============================
-       HEADER (FULL-WIDTH COVER PHOTO)
+       HEADER (FULL-WIDTH COVER)
        ============================ */
-    header.profile-header {
-      position: relative;
-      background-image: url('cover.jpg');
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      padding: 1rem 2rem;
-      color: var(--color-light);
-      box-shadow: var(--shadow-sm);
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-      text-align: center;
+    header.profile-header{
+      position:relative;
+      background:url('cover.jpg') center/cover no-repeat;
+      display:flex; align-items:center; justify-content:center;
+      gap:2rem; padding:1rem 2rem;
+      color:var(--color-light); box-shadow:var(--shadow-sm);
+      margin-bottom:2rem; flex-wrap:wrap; text-align:center;
     }
-    header.profile-header::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-color: rgba(0, 0, 0, 0.4);
-      z-index: 0;
+    header.profile-header::before{
+      content:""; position:absolute; inset:0;
+      background:rgba(0,0,0,.4); z-index:0;
     }
-    header.profile-header > * { position: relative; z-index: 1; }
+    header.profile-header>*{position:relative; z-index:1;}
 
-    .profile-photo {
-      flex: 0 0 auto;
-      width: 140px; height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: var(--shadow-sm);
-    }
-    .profile-info { min-width: 200px; }
-    .profile-info h1 { font-size: 2rem; margin-bottom: 0.3rem; }
-    .profile-info .tagline {
-      font-size: 1rem;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--color-light);
-      margin-bottom: 0.8rem;
-    }
+    .profile-photo{width:140px;height:140px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow-sm);}
+    .profile-info{min-width:200px;}
+    .profile-info h1{font-size:2rem;margin-bottom:.3rem;}
+    .tagline{font-size:1rem;font-weight:300;font-style:italic;color:var(--color-light);margin-bottom:.8rem;}
 
-    .social-icons { display: inline-flex; gap: 1rem; }
-    .social-icons a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      background: var(--color-light);
-      color: var(--color-dark);
-      transition: background-color .3s, transform .3s;
+    .social-icons{display:inline-flex;gap:1rem;}
+    .social-icons a{
+      width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+      background:var(--color-light);color:var(--color-dark);transition:.3s;
     }
-    .social-icons a:hover {
-      background: var(--color-accent);
-      color: var(--color-light);
-      transform: translateY(-2px);
-    }
-    .social-icons img { width: 18px; height: 18px; }
+    .social-icons a:hover{background:var(--color-accent);color:var(--color-light);transform:translateY(-2px);}
+    .social-icons img{width:18px;height:18px;}
 
-    /* ───────────────────────────────────
-       MOBILE HEADER HEIGHT GUARD
-       ─────────────────────────────────── */
+    /* Keep header height sensible on phones */
     @media (max-width:640px){
-      header.profile-header{
-        min-height: 200px;      /* keeps nice aspect ratio */
-        background-size: cover; /* defensively re-state */
-      }
+      header.profile-header{min-height:200px;background-size:cover;}
     }
 
     /* ============================
        KARPATHY-STYLE TIMELINE
        ============================ */
-    .timeline-wrapper { position: relative; margin: 3rem 0; }
-    .timeline-wrapper::before {
-      content:""; position:absolute;
-      left: 220px; top:0; bottom:0;
-      width:2px; background:#cfcfcf;
+    .timeline-wrapper{position:relative;margin:3rem 0;}
+    .timeline-wrapper::before{
+      content:"";position:absolute;left:220px;top:0;bottom:0;width:2px;background:#cfcfcf;
     }
 
-    .timeline-event {
-      position: relative;
-      display: flex;
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-      flex-wrap: wrap;
-    }
-    .timeline-year {
-      width: 200px;
-      text-align: right;
-      padding-right: 20px;
-      color:#b7b7b7;
-      font-size:.95rem; line-height:1.2;
-      user-select:none;
+    .timeline-event{position:relative;display:flex;gap:1.5rem;margin-bottom:3rem;flex-wrap:wrap;}
+    .timeline-year{
+      width:200px;text-align:right;padding-right:20px;color:#b7b7b7;
+      font-size:.95rem;line-height:1.2;user-select:none;
     }
     .timeline-dot{
-      position:absolute;
-      left:211px; top:.35rem;
-      width:12px; height:12px;
-      border-radius:50%;
-      background:#cfcfcf;
-      border:2px solid #fff;
-      box-sizing:border-box;
+      position:absolute;left:211px;top:.35rem;
+      width:12px;height:12px;border-radius:50%;background:#cfcfcf;border:2px solid #fff;
     }
-    .timeline-body{ flex:1 1 0; display:flex; gap:1.25rem; }
+    .timeline-body{flex:1 1 0;display:flex;gap:1.25rem;}
 
-    /* SHRUNK, SQUARE LOGO BADGE */
+    /* square badge for logos */
     .timeline-logo{
-      flex:0 0 64px; width:64px; height:64px;
-      aspect-ratio:1/1;
-      padding:4px;
-      background:#fff;
-      border-radius:6px;
-      object-fit:contain;          /* show whole logo */
-      box-shadow:0 0 0 1px #e5e5e5;
+      flex:0 0 64px;width:64px;height:64px;aspect-ratio:1/1;padding:4px;
+      background:#fff;border-radius:6px;object-fit:contain;box-shadow:0 0 0 1px #e5e5e5;
     }
-    .timeline-desc strong{display:block;font-size:1.1rem;margin-bottom:.25rem;}
-    .timeline-desc em   {display:block;font-style:italic;color:#777;margin-bottom:.75rem;}
-    .timeline-desc p    {margin-bottom:.5rem;font-size:.95rem;}
-    .timeline-desc a    {color:var(--color-accent);font-weight:500;}
 
-    /* MOBILE tweaks for timeline */
+    .timeline-desc strong{display:block;font-size:1.1rem;margin-bottom:.25rem;}
+    .timeline-desc em{display:block;font-style:italic;color:#777;margin-bottom:.75rem;}
+    .timeline-desc p{margin-bottom:.5rem;font-size:.95rem;}
+    .timeline-desc a{color:var(--color-accent);font-weight:500;}
+
+    /* ===== 640 px & down ===== */
     @media (max-width:640px){
       .timeline-wrapper::before{left:140px;}
       .timeline-year{width:120px;padding-right:12px;font-size:.85rem;}
@@ -177,35 +114,36 @@
       .timeline-logo{flex:0 0 48px;width:48px;height:48px;}
     }
 
+    /* ===== 480 px & down  (NEW) ===== */
+    @media (max-width:480px){
+      .timeline-wrapper::before{left:110px;}          /* move spine left */
+      .timeline-year{
+        width:80px;padding-right:8px;white-space:normal;line-height:1.2;
+      }
+      .timeline-dot{left:103px;}                      /* keep dot centred */
+      .timeline-logo{flex:0 0 42px;width:42px;height:42px;} /* even smaller badge */
+    }
+
     /* ============================
        SECTIONS (Projects)
        ============================ */
     section:nth-of-type(even){background:var(--color-light);}
-    section:nth-of-type(odd) {background:var(--color-bg);}
+    section:nth-of-type(odd){background:var(--color-bg);}
     section h2{
-      font-size:1.8rem; margin-bottom:1.5rem;
-      text-align:center; position:relative; display:inline-block;
+      font-size:1.8rem;margin-bottom:1.5rem;text-align:center;position:relative;display:inline-block;
     }
     section h2::after{
-      content:""; position:absolute; left:50%; transform:translateX(-50%);
-      bottom:-.5rem; width:50px; height:3px;
-      background:var(--color-accent); border-radius:2px;
+      content:"";position:absolute;left:50%;transform:translateX(-50%);
+      bottom:-.5rem;width:50px;height:3px;background:var(--color-accent);border-radius:2px;
     }
 
     /* PROJECTS GRID */
-    .projects-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:1.5rem;
-    }
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
     .project-card{
-      background:var(--color-light);
-      border-radius:8px; padding:1.2rem;
-      box-shadow:var(--shadow-sm);
-      transition:transform .3s, box-shadow .3s;
-      display:flex; flex-direction:column; justify-content:space-between;
+      background:var(--color-light);border-radius:8px;padding:1.2rem;
+      box-shadow:var(--shadow-sm);transition:.3s;display:flex;flex-direction:column;justify-content:space-between;
     }
-    .project-card:hover{transform:translateY(-4px); box-shadow:var(--shadow-md);}
+    .project-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
     .project-card h3{margin-bottom:.5rem;font-size:1.1rem;color:var(--color-dark);}
     .project-card p{font-size:.9rem;color:var(--color-muted);flex-grow:1;}
     .project-card a{margin-top:.8rem;align-self:flex-start;color:var(--color-accent);font-weight:500;}
@@ -222,7 +160,7 @@
 
 <body>
   <!-- ===========================
-       HORIZONTAL HEADER BLOCK
+       HEADER
        =========================== -->
   <header class="profile-header">
     <img class="profile-photo" src="avatar.jpg" alt="Shashank Vaidya"/>
@@ -256,7 +194,6 @@
         <div class="timeline-event">
           <div class="timeline-year">2025 – Present</div>
           <div class="timeline-dot"></div>
-
           <div class="timeline-body">
             <img src="assets/sncf_logo.svg" alt="SNCF Réseau" class="timeline-logo"/>
             <div class="timeline-desc">
@@ -275,7 +212,6 @@
         <div class="timeline-event">
           <div class="timeline-year">2024 – 2025</div>
           <div class="timeline-dot"></div>
-
           <div class="timeline-body">
             <img src="assets/mv_group_logo.png" alt="MV Group" class="timeline-logo"/>
             <div class="timeline-desc">
@@ -293,11 +229,10 @@
         <div class="timeline-event">
           <div class="timeline-year">2023 – 2025</div>
           <div class="timeline-dot"></div>
-
           <div class="timeline-body">
             <img src="assets/epita_logo.png" alt="EPITA" class="timeline-logo"/>
             <div class="timeline-desc">
-              <strong>MSc Data Science & Analytics</strong>
+              <strong>MSc Data Science &amp; Analytics</strong>
               <em>EPITA · Paris</em>
               <p>
                 • Advanced ML, NLP, MLOps.<br>
@@ -311,14 +246,13 @@
         <div class="timeline-event">
           <div class="timeline-year">2020 – 2022</div>
           <div class="timeline-dot"></div>
-
           <div class="timeline-body">
             <img src="assets/rgpv_logo.png" alt="RGPV" class="timeline-logo"/>
             <div class="timeline-desc">
               <strong>MCA · Computer Applications</strong>
               <em>RGPV Tech University · Indore</em>
               <p>
-                • Specialized in algorithms, data structures & software engineering.<br>
+                • Specialized in algorithms, data structures &amp; software engineering.<br>
                 • Capstone: scalable Django-based campus portal.
               </p>
             </div>
@@ -329,7 +263,6 @@
         <div class="timeline-event">
           <div class="timeline-year">2017 – 2020</div>
           <div class="timeline-dot"></div>
-
           <div class="timeline-body">
             <img src="assets/medicaps_logo.png" alt="Medicaps University" class="timeline-logo"/>
             <div class="timeline-desc">
@@ -348,7 +281,7 @@
   </section>
 
   <!-- ============================
-       PROJECTS SECTION
+       PROJECTS
        ============================ -->
   <section id="projects">
     <div class="container">
