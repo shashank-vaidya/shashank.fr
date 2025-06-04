@@ -171,14 +171,14 @@
     .timeline-container {
       position: relative;
       margin: 2rem 0;
-      /* Reserve 60px for year + 20px for marker column */
-      padding-left: 80px;
+      /* Reserve 80px on the left: 60px for year + 20px for marker column */
+      padding-left: 100px;
     }
-    /* Draw a 1px-wide vertical line at the center of columns 1+2 (60px + 20px/2 = 70px from left) */
+    /* Draw a 1px-wide vertical line at the center of columns 1+2: 60px + (20px/2) = 70px, plus additional 30px offset = 100px total left padding? Actually: new left = 80px + 10px = 90px */
     .timeline-container::before {
       content: "";
       position: absolute;
-      left: 70px;
+      left: 90px;
       top: 0;
       bottom: 0;
       width: 1px;
@@ -208,6 +208,8 @@
       font-size: 0.9rem;
       color: var(--color-muted);
       white-space: nowrap;
+      /* move it left of vertical line */
+      margin-left: -20px; /* push year 20px further left to match screenshot spacing */
     }
 
     /* MARKER (column 2): 10×10 circle centered in that 20px */
@@ -223,7 +225,7 @@
       margin-top: 0; /* aligned with top of content */
       overflow: hidden;
     }
-    /* If you have small logos (e.g. “sncf_logo.png”) in /assets/, uncomment: */
+    /* For SNCF, show the logo inside the circle */
     .timeline .marker img {
       width: 100%;
       height: 100%;
@@ -261,16 +263,17 @@
     /* RESPONSIVE ADJUSTMENTS */
     @media (max-width: 640px) {
       .timeline-container {
-        padding-left: 60px;
+        padding-left: 80px;
       }
       .timeline-container::before {
-        left: 50px; /* 40px (year column) + 10px (half of marker area) */
+        left: 70px; /* 60px + (20px/2) = 70px */
       }
       .timeline li {
         grid-template-columns: 40px 20px 1fr; /* shrink year column */
       }
       .timeline .year {
         font-size: 0.8rem;
+        margin-left: -15px; /* smaller offset on mobile */
       }
       .timeline .marker {
         width: 8px;
@@ -435,8 +438,8 @@
           <li>
             <div class="year">2025 – Present</div>
             <div class="marker">
-              <!-- If you have “sncf_logo.png” in assets/, uncomment: -->
-              <!-- <img src="assets/sncf_logo.png" alt="SNCF Réseau" /> -->
+              <!-- Using sncf_logo.svg inside the circle -->
+              <img src="assets/sncf_logo.svg" alt="SNCF Réseau" />
             </div>
             <div class="content">
               <strong>Data Scientist – LLM Intern</strong>
@@ -455,8 +458,7 @@
           <li>
             <div class="year">2024 – 2025</div>
             <div class="marker">
-              <!-- If you have “mvgroup_logo.png” in assets/, uncomment: -->
-              <!-- <img src="assets/mvgroup_logo.png" alt="MV Group" /> -->
+              <!-- No logo provided, will show empty circle -->
             </div>
             <div class="content">
               <strong>AI Engineer – Intern</strong>
@@ -475,8 +477,7 @@
           <li>
             <div class="year">2023 – 2025</div>
             <div class="marker">
-              <!-- If you have “epita_logo.png” in assets/, uncomment: -->
-              <!-- <img src="assets/epita_logo.png" alt="EPITA" /> -->
+              <!-- No logo provided for EPITA, will show circle -->
             </div>
             <div class="content">
               <strong>Master’s in Data Science &amp; Analytics</strong>
@@ -493,8 +494,7 @@
           <li>
             <div class="year">2020 – 2022</div>
             <div class="marker">
-              <!-- If you have “rgpv_logo.png” in assets/, uncomment: -->
-              <!-- <img src="assets/rgpv_logo.png" alt="RGPV Tech University" /> -->
+              <!-- No logo provided for RGPV, will show circle -->
             </div>
             <div class="content">
               <strong>Master’s in Computer Applications</strong>
@@ -511,8 +511,7 @@
           <li>
             <div class="year">2017 – 2020</div>
             <div class="marker">
-              <!-- If you have “medicaps_logo.png” in assets/, uncomment: -->
-              <!-- <img src="assets/medicaps_logo.png" alt="Medicaps University" /> -->
+              <!-- No logo provided for Medicaps, will show circle -->
             </div>
             <div class="content">
               <strong>Bachelor’s in Computer Applications</strong>
