@@ -52,6 +52,24 @@
       header.profile-header{min-height:200px;}
     }
 
+    /* -------------  Download CV Button ------------- */
+    .btn-download-cv {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background: var(--color-accent);
+      color: var(--color-light);
+      font-weight: 600;
+      border-radius: 4px;
+      box-shadow: var(--shadow-sm);
+      transition: background 0.3s, transform 0.3s;
+      text-decoration: none;
+    }
+    .btn-download-cv:hover {
+      background: #00796b;
+      transform: translateY(-2px);
+    }
+
     /* -------------  TIMELINE ------------- */
     .timeline-wrapper{position:relative;margin:3rem 0;}
     .timeline-wrapper::before{content:"";position:absolute;left:220px;top:0;bottom:0;width:2px;background:#cfcfcf;}
@@ -140,6 +158,11 @@
           <img src="assets/x_logo.png" alt="Twitter"/>
         </a>
       </div>
+
+      <!-- Download CV Button -->
+      <a href="assets/_Shashank_resume.pdf" download class="btn-download-cv">
+        Download CV
+      </a>
     </div>
   </header>
 
