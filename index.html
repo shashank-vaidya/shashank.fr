@@ -110,23 +110,40 @@
       height: 18px;
     }
 
-    /* -------------  Download CV Button ------------- */
-    .btn-download-cv {
-      display: inline-block;
-      padding: 0.8rem 1.6rem;
-      border-radius: 6px;
-      background: var(--color-accent);
-      color: var(--color-light);
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      box-shadow: var(--shadow-sm);
-      transition: background 0.2s, transform 0.2s;
-    }
-    .btn-download-cv:hover {
-      background: #00796b;
-      transform: translateY(-2px);
-    }
+/* -------------  Download CV Button (icon style inverted) ------------- */
+.btn-download-cv {
+  /* Match social-icon sizing */
+  width: 2.25rem;           /* 36px */
+  height: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Circular shape */
+  border-radius: 50%;
+
+  /* Inverted colors: filled accent background, light text */
+  background: var(--color-accent);
+  color: var(--color-light);
+
+  /* Match icon transitions */
+  transition: background 0.3s, color 0.3s, transform 0.3s;
+
+  /* Remove default link underlines */
+  text-decoration: none;
+
+  /* Optional box‑shadow to match icons */
+  box-shadow: var(--shadow-sm);
+}
+.btn-download-cv:hover {
+  /* Swap to white background, accent text */
+  background: var(--color-light);
+  color: var(--color-accent);
+
+  /* Same hover lift */
+  transform: translateY(-2px);
+}
+
 
     /* responsive tweak for stacking */
     @media (max-width: 640px) {
